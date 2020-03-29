@@ -1,0 +1,10 @@
+<?php
+
+// Nome della homepage (HTML Ammesso)
+$homeName = "<b>Nexxon</b>Tech";
+
+// Configurazione per la API di Unsplash
+$clientId = "";
+$cat = "";
+
+?>
