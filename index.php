@@ -56,7 +56,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		<!-- Main area -->
 		<div class="container-fluid" id="main">
 			<div id="branding" class="mt-2">
-				<h1 style="font-family: 'Open Sans', sans-serif; float: left;"><?php echo $homeName ?> <sup><i style="font-size: 15px;">StartPage</i></sup></h1>
+				<h1 style="font-family: 'Open Sans', sans-serif; float: left;"><?php echo $homeName ?><sup><span style="font-size: 15px;">StartPage</span></sup></h1>
 			</div>
 			<!-- Contenuto centrale -->
 			<div id="central-content" class="container-fluid">
@@ -88,7 +88,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- Footer -->
 			<div id="credit" class="container-fluid">
 				<!-- Crediti dell'immagine -->
-				<p style="float: left"><?php echo("Photo by <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> on <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a>"); ?></p>
+				<p style="float: left"><?php echo("Photo by <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> on <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a> | Vedi <a href='https://unsplash.com/collections/$cat'>tutta la collezione</a>"); ?></p>
 				<!-- NexxonTech Footer -->
 				<p align="right">Powered with ❤️ in 🇮🇹 by <a href="http://www.nexxontech.it">NexxonTech</a></p>
 			</div>

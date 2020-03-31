@@ -24,14 +24,12 @@ $apiUrl = "https://api.unsplash.com/photos/random?client_id=$clientId&collection
 $apiResponse = file_get_contents($apiUrl);
 if($apiResponse == false) {
 	$backgroundUrl = "res/img/fallbackImg.jpg";
-	$dwldUrl = "https://unsplash.com/photos/2_0yendZrko/download";
-	$autore = "Gilberto Parada";
-	$authorLink = "https://unsplash.com/@gilbertoparada";
+	$autore = $fallbackAuthor;
+	$authorLink = $fallbackAuthorUrl;
 } else {
 	$jsonResponse = utf8_encode($apiResponse);
 	$response = json_decode($jsonResponse);
 	$backgroundUrl = $response[0]->{"urls"}->{"full"};
-	$dwldUrl = $response[0]->{"urls"}->{"download"};
 	$autore = $response[0]->{"user"}->{"name"};
 	$authorLink = $response[0]->{"user"}->{"links"}->{"html"};
 }

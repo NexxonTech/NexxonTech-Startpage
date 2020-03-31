@@ -7,4 +7,8 @@ $homeName = "<b>Nexxon</b>Tech";
 $clientId = "";
 $cat = "";
 
+// Fallback image config
+$fallbackAuthor = "Gilberto Parada";
+$fallbackAuthorUrl = "https://unsplash.com/@gilbertoparada";
+
 ?>
