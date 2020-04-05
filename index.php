@@ -74,11 +74,11 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 						<div class="row">
 							<!-- Casella di ricerca -->
 							<div class="col-11 p-sm-1 p-2">
-								<input id="inputBox" class="form-control form-control-sm mr-1" type="text" placeholder="Cerca con Google" style="background-color: rgba(F, F, F, 0.5);" autofocus>
+								<input id="inputBox" class="form-control form-control-sm mr-1" type="text" placeholder="Cerca con Google" style="background-color: rgba(F, F, F, 0.5);" autocomplete="off" autofocus>
 							</div>
 							<!-- Pulsante di ricerca -->
 						  <div class="col-1 p-sm-1 p-2">
-						  	<button id="startSearch" type="button" class="btn btn-primary"><i class="fas fa-search" aria-hidden="true"></i></button>
+						  	<button id="startSearch" type="button" class="btn btn-primary"><i id="buttonChar" class="fas fa-search" aria-hidden="true"></i></button>
 						  </div>
 						</div>
 					</div>
@@ -88,18 +88,19 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- Footer -->
 			<div id="credit" class="container-fluid">
 				<!-- Crediti dell'immagine -->
-				<p style="float: left"><?php echo("Photo by <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> on <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a> | Vedi <a href='https://unsplash.com/collections/$cat'>tutta la collezione</a>"); ?></p>
+				<p style="float: left"><?php echo("Photo by <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> on <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a> | Vedi <a href='https://unsplash.com/collections/$cat?utm_source=nexxontech_startPage&utm_medium=referral'>tutta la collezione</a>"); ?></p>
 				<!-- NexxonTech Footer -->
 				<p align="right">Powered with ❤️ in 🇮🇹 by <a href="http://www.nexxontech.it">NexxonTech</a></p>
 			</div>
 		</div>
 		
-		<!-- Script JS della pagina -->
-		<script src="res/js/index.js"></script>
 		
 		<!-- Importo gli script per Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		
+		<!-- Script JS della pagina -->
+		<script src="res/js/index.js"></script>
 	</body>
 </html>
