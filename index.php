@@ -19,6 +19,25 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 
+<?php
+	// Se l'utente non ha mai visto l'avviso sui Cookies glielo mostro e lo ricordo
+	if (!isset($_COOKIE['cookiePolicy'])) {
+		$showAdvice = true;
+		setcookie("cookiePolicy", "true", time() + (10 * 365 * 24 * 60 * 60), "/");
+	} else {
+		$showAdvice = false;
+	}
+
+	// Carico la configurazione
+	require "config.php";
+	
+	// Carico la API di Unsplash
+	require "res/php/unsplashApi.php";
+	
+	// Carico il lettore dei preferiti
+	require "res/php/favReader.php";
+?>
+
 <html>
 	<head>
 		<title>NexxonTech Startpage</title>
@@ -42,21 +61,28 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		<link rel="stylesheet" href="res/css/index.css">
 	</head>
 	<body style="height: 100%;" onload="startTime()">
-		<?php
-		// Carico la configurazione
-		require "config.php";
-		
-		// Carico la API di Unsplash
-		require "res/php/unsplashApi.php";
-		?>
-		
 		<!-- Background sfocato scaricato da Unsplash -->
 		<div style="height: 100%; width: 100%; overflow: hidden;"><div id="bgImage" style="background-image: url('<?php echo $backgroundUrl; ?>');"></div></div>
 		
 		<!-- Main area -->
 		<div class="container-fluid" id="main">
-			<div id="branding" class="mt-2">
-				<h1 style="font-family: 'Open Sans', sans-serif; float: left;"><?php echo $homeName ?><sup><span style="font-size: 15px;">StartPage</span></sup></h1>
+			<!-- Barra in alto -->
+			<div id="branding" class="mt-2 w-100">
+				<!-- Logo -->
+				<h1 style="font-family: 'Open Sans', sans-serif; float: left; "><?php echo $homeName ?><sup><span style="font-size: 15px;">StartPage</span></sup></h1>
+				<!-- Menu dei preferiti -->
+				<div class="dropdown" style="float: right;">
+					<!-- Pulsante di apertura del menu -->
+				  <button style="padding: 0; border: none; background: none; margin: 10px; color: white" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <i class="fas fa-bars" style="font-size: 30px"></i>
+				  </button>
+				  <!-- Lista dei preferiti -->
+				  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+				  	<?php favList(); ?>
+					  <div class="dropdown-divider"></div>
+					  <a class="dropdown-item" data-toggle="modal" data-target="#gestionePreferiti"><i class="fas fa-cogs"></i> Gestisci preferiti</a>
+				  </div>
+				</div>
 			</div>
 			<!-- Contenuto centrale -->
 			<div id="central-content" class="container-fluid">
@@ -94,6 +120,46 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</div>
 		
+		<!-- Modal di gestione dei preferiti -->
+		<div id="gestionePreferiti" class="modal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Impostazioni dei preferiti</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div id="favSettingsContainer" class="modal-body">
+		      	<p id="addFavBtn" class="w-100"><i class="fas fa-plus" style="float: right; color: green"></i></p><br>
+		        <?php favManagerList(); ?>
+		      </div>
+		      <div class="modal-footer">
+		        <button id="favSaveBtn" type="button" class="btn btn-primary">Salva</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- Modal con messaggio sui cookies -->
+		<div id="cookieModal" class="modal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Politica sui Cookie</h5>
+		      </div>
+		      <div class="modal-body">
+		      	<p >Questo sito utilizza dei cookie tecnici (obbligatori) per fornire i suoi servizi in maniera corretta.</p>
+		      	<p>Questo messaggio ti viene mostrato per assicurarci che tu sia d'accordo con ciò.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">OK, Grazie</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 		
 		<!-- Importo gli script per Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -102,5 +168,20 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		
 		<!-- Script JS della pagina -->
 		<script src="res/js/index.js"></script>
+		<script src="res/js/favManager.js"></script>
+		
+		<!-- Visualizza banner cooke -->
+		<?php
+		// Se è necessario mostrare il banner, avvio la modal
+		if ($showAdvice == true) {
+			echo("
+			<script>
+		    $(window).on('load',function(){
+		        $('#cookieModal').modal('show');
+		    });
+			</script>
+			");
+		}
+		?>
 	</body>
 </html>
