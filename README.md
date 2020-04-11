@@ -17,3 +17,4 @@ sarà sufficiente modificare qualche parametro di `config.template` e salvarlo c
 - **$cat**: L'id della categoria Unsplash da cui recuperare le immagini. Inserendo il numero 9039753 è possibile utilizzare il database curato direttamente da Riccardo Sacchetto.
 - **$fallbackAuthor**: Il nome dell'autore dell'immagine di fallback (L'immagine che viene mostrata nel caso in cui la API di Unsplash non sia disponibile)
 - **$fallbackAuthorUrl**: L'URL del profilo Unsplash (del tipo https://unsplash.com/@occhioverde03) dell'autore dell'immagine di fallback (L'immagine che viene mostrata nel caso in cui la API di Unsplash non sia disponibile)
+- **$defaultFavs**: Perferiti da mostrare ai nuovi utenti; questa variabile è un array strutturato come "[Nome del preferito]" => "[URL senza http:// o https://]]"

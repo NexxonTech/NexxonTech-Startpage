@@ -23,6 +23,6 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 // Se ho ricevuto una stringa da salvare
 if (isset($_GET["string"])) {
 	// La salvo come cookie
-	setcookie("favorites", $_GET["string"], time() + (10 * 365 * 24 * 60 * 60), "/");
+	setcookie("favorites2", $_GET["string"], time() + (10 * 365 * 24 * 60 * 60), "/");
 }
 ?>

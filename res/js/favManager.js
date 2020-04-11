@@ -34,7 +34,7 @@ $(document).delegate('#addFavBtn', 'click', function(event) {
 	// Cerco preferiti fino a quando non ce ne sono più
 	while (true) {
 		// Se non esiste
-		if (document.getElementById('fav-name-' + favCount) === null) {
+		if (document.getElementById('fav-' + favCount) === null) {
 			// Fermo il ciclo
 			break;
 		} else {
@@ -51,20 +51,14 @@ function updateFavs() {
 	/* Funzione updateFavs: aggiorna i preferiti */
 	// Dichiaro le variabili di appoggio
 	var favCount = 0;
-	var favString = "";
+	var favArray = {};
 	
 	// Cerco preferiti fino a quando non ce ne sono più
 	while (true) {
 		// Se esiste
-		if (document.getElementById('fav-name-' + favCount) !== null) {
-			// Se è il primo preferito
-			if (favString === "") {
-				// Creo la stringa da salvare come cookie
-				favString = document.getElementById('fav-name-' + favCount).innerHTML + "=" + document.getElementById('fav-url-' + favCount).innerHTML;
-			} else {
-				// Aggiungo alla stringa del cookie
-				favString = favString + "|" + document.getElementById('fav-name-' + favCount).innerHTML + "=" + document.getElementById('fav-url-' + favCount).innerHTML;
-			}
+		if (document.getElementById('fav-' + favCount) !== null) {
+			// Aggiungo il preferito alla lista da trasmettere al backend
+			favArray[document.getElementById('fav-name-' + favCount).innerHTML] = document.getElementById('fav-url-' + favCount).innerHTML;
 		} else {
 			// Fermo il ciclo
 			break;
@@ -81,11 +75,46 @@ function updateFavs() {
       location.reload();
     }
   };
-	xhttp.open("GET", "res/php/favUpdate.php?string=" + favString, true);
+	xhttp.open("GET", "res/api/favUpdate.php?string=" + JSON.stringify(favArray), true);
 	xhttp.send();
 }
 
 function rmFav(id) {
 	/* Funzione rmFav: cancella un link dato il suo id */
+	var favCount = 0;
+	// Cerco preferiti fino a quando non ce ne sono più
+	while (true) {
+		// Se non esiste
+		if (document.getElementById('fav-' + favCount) === null) {
+			// Fermo il ciclo
+			break;
+		} else {
+			// Incremento il contatore
+			favCount++;
+		}
+	}
+	
+	// Cancello l'elemento
 	document.getElementById("fav-" + id).remove();
+	
+	// Se necessario, riconto quelli rimanenti
+	if (id < favCount) {
+		var idAttuale = id + 1;
+		while (true) {
+			// Se esiste
+			if (document.getElementById('fav-' + idAttuale) !== null) {
+				// Scalo tutti gli id successivi all'elemento rimosso
+				document.getElementById("fav-" + idAttuale).id = "fav-" + id;
+				document.getElementById("fav-name-" + idAttuale).id = "fav-name-" + id;
+				document.getElementById("fav-url-" + idAttuale).id = "fav-url-" + id;
+				
+				// Incremento le due variabili
+				idAttuale++;
+				id++;
+			} else {
+				// Fermo il ciclo
+				break;
+			}
+		}
+	}
 }

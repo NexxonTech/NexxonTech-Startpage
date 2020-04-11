@@ -21,40 +21,40 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // Se non è mai stato creato, inseriso il cookie con i preferiti di default
-if(!isset($_COOKIE["favorites"])) {
-    setcookie("favorites", "Google=www.google.it|Wikipedia=it.wikipedia.org|NexxonTech=www.nexxontech.it", time() + (10 * 365 * 24 * 60 * 60), "/");
+if(!isset($_COOKIE["favorites2"])) {
+		// Codifico il cookie con i valori predefiniti
+		$cookieContent = json_encode($defaultFavs);
+		// Imposto il cookie
+    setcookie("favorites2", $cookieContent, time() + (10 * 365 * 24 * 60 * 60), "/");
 }
 
 function favList() {
 	/* Funzione favList: crea la lista con i link cliccabili */
-	// Separo i vari links
-	$favs = explode("|",$_COOKIE["favorites"]);
+	// Decodifico il cookie
+	$favs = json_decode($_COOKIE["favorites2"], true);
+	echo('<script>console.log("' . $favs . '");</script>');
 	// Se ci sono preferiti
 	if (count($favs) != 0) {
 		// Per ogni preferito
-		foreach ($favs as $fav) {
-			// Separo nome da URL
-			$fav = explode("=",$fav);
+		foreach ($favs as $favName => $favUrl) {
 			// Faccio il print del link
-			echo('<a class="dropdown-item" href="https://' . $fav[1] . '">' . $fav[0] . '</a>');
+			echo('<a class="dropdown-item" href="https://' . $favUrl . '">' . $favName . '</a>');
 		}
 	}
 }
 
 function favManagerList() {
 	/* Funzione favList: crea la lista con i link modificabili */
-	// Separo i vari links
-	$favs = explode("|",$_COOKIE["favorites"]);
+	// Decodifico il cookie
+	$favs = json_decode($_COOKIE["favorites2"], true);
 	// Se ci sono preferiti
 	if (count($favs) != 0) {
 		// Preparo il contatore di preferiti
 		$favCount = 0;
 		// Per ogni preferito
-		foreach ($favs as $fav) {
-			// Separo nome da URL
-			$fav = explode("=",$fav);
+		foreach ($favs as $favName => $favUrl) {
 			// Faccio il print dell'elemento editabile
-			echo('<p id="fav-' . $favCount . '" class="w-100"><b><span id="fav-name-' . $favCount . '" contenteditable>' . $fav[0] . '</span>:</b> <span id="fav-url-' . $favCount . '" contenteditable>' . $fav[1] . '</span><i class="fas fa-trash" style="float: right; color: red" onclick="rmFav(' . $favCount . ')"></i></p>');
+			echo('<p id="fav-' . $favCount . '" class="w-100"><b><span id="fav-name-' . $favCount . '" contenteditable>' . $favName . '</span>:</b> <span id="fav-url-' . $favCount . '" contenteditable>' . $favUrl . '</span><i class="fas fa-trash" style="float: right; color: red" onclick="rmFav(' . $favCount . ')"></i></p>');
 			// Incremento il contatore
 			$favCount++;
 		}
