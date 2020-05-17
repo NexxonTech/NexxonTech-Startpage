@@ -28,6 +28,20 @@ $(document).delegate('#favSaveBtn', 'click', function(event) {
 
 $(document).delegate('#addFavBtn', 'click', function(event) {
 	/* Listener addFavBtn -> click: aggiungo un preferito */
+	
+	// Creo un XMLHttpRequest
+	var xhttp = new XMLHttpRequest();
+	// Quando la API risponde
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		// Salvo il nome del mese
+  		texts = JSON.parse(this.responseText);
+  	}
+  };
+  // Avvio la comunicazione
+  xhttp.open("GET", "res/api/javascriptTranslateAssistant.php?action=favTexts", false);
+  xhttp.send();
+	
 	// Dichiaro la variabile nella quale contare i preferiti esistenti
 	var favCount = 0;
 	
@@ -44,7 +58,7 @@ $(document).delegate('#addFavBtn', 'click', function(event) {
 	}
 	
 	// Aggiungo l'HTML per la gestione del nuovo preferito
-	document.getElementById('favSettingsContainer').innerHTML = document.getElementById('favSettingsContainer').innerHTML + '<p id="fav-' + favCount + '" class="w-100"><b><span id="fav-name-' + favCount + '" contenteditable>[Nome favorito]</span>:</b> <span id="fav-url-' + favCount + '" contenteditable>[URL senza http:// o https://]</span><i class="fas fa-trash" style="float: right; color: red" onclick="rmFav(' + favCount + ')"></i></p>';
+	document.getElementById('favSettingsContainer').innerHTML = document.getElementById('favSettingsContainer').innerHTML + '<p id="fav-' + favCount + '" class="w-100"><b><span id="fav-name-' + favCount + '" contenteditable>[' + texts["Nome favorito"] + ']</span>:</b> <span id="fav-url-' + favCount + '" contenteditable>[' + texts["URL favorito"] + ']</span><i class="fas fa-trash" style="float: right; color: red" onclick="rmFav(' + favCount + ')"></i></p>';
 });
 
 function updateFavs() {

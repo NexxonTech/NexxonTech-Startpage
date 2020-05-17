@@ -60,32 +60,22 @@ function startTime() {
 
 function determineMonth(mese) {
 	/* Funzione determineMonth: analizza il mese sostituendolo con la sua versione scritta */
-	switch(mese) {
-		case 0:
-	  	return "Gennaio";
-	  case 1:
-	    return "Febbraio";
-	  case 2:
-	    return "Marzo";
-	  case 3:
-	    return "Aprile";
-	  case 4:
-	    return "Maggio";
-	  case 5:
-	    return "Giugno";
-	  case 6:
-	    return "Luglio";
-	  case 7:
-	    return "Agosto";
-	  case 8:
-	    return "Settembre";
-	  case 9:
-	    return "Ottobre";
-	  case 10:
-	    return "Novembre";
-	  case 11:
-	    return "Dicembre";
-	}
+	// Dichiaro la variabile che conterrà il testo
+	var textMese = "";
+	// Creo un XMLHttpRequest
+	var xhttp = new XMLHttpRequest();
+	// Quando la API risponde
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		// Salvo il nome del mese
+  		textMese = this.responseText;
+  	}
+  };
+  // Avvio la comunicazione
+  xhttp.open("GET", "res/api/javascriptTranslateAssistant.php?action=translateMonth&month=" + mese, false);
+  xhttp.send();
+  // Ritorno il nome del mese
+  return textMese;
 }
 
 
@@ -103,6 +93,20 @@ function checkTime(i) {
 
 function pressEnter() {
 	/* Funzione pressEnter: avvia le operazioni di redirezione o scambia tra ricerca e apertura URL */
+	
+	// Creo un XMLHttpRequest
+	var xhttp = new XMLHttpRequest();
+	// Quando la API risponde
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		// Salvo il nome del mese
+  		texts = JSON.parse(this.responseText);
+  	}
+  };
+  // Avvio la comunicazione
+  xhttp.open("GET", "res/api/javascriptTranslateAssistant.php?action=pressEnterTranslate", false);
+  xhttp.send();
+	
 	// Recupero la query
 	query = document.getElementById("inputBox").value
 	// Cambio solo se non è stato digitato nulla
@@ -111,7 +115,7 @@ function pressEnter() {
 		if (opType === 0) {
 			// Passo all'apertura di un URL
 			opType = 1;
-			document.getElementById("inputBox").placeholder = "Digita un URL";
+			document.getElementById("inputBox").placeholder = texts["Digita un URL"];
 			document.getElementById("buttonChar").className = "fas fa-arrow-circle-right";
 		} else {
 			// Passo alla ricerca
@@ -119,11 +123,11 @@ function pressEnter() {
 			// Guardo quale grafica mostrare
 			if (shType === 0) {
 				// Grafica per Google
-				document.getElementById("inputBox").placeholder = "Cerca con Google";
+				document.getElementById("inputBox").placeholder = texts["Cerca con Google"];
 				document.getElementById("buttonChar").className = "fas fa-search";
 			} else {
 				// Grafica per Wolfram|Alpha
-				document.getElementById("inputBox").placeholder = "Chiedi a Wolfram|Alpha";
+				document.getElementById("inputBox").placeholder = texts["Chiedi a Wolfram|Alpha"];
 				document.getElementById("buttonChar").className = "fas fa-calculator";
 			}
 		}
@@ -148,6 +152,20 @@ function pressEnter() {
 
 function changeSearchType() {
 	/* Funzione changeSearchType: cambia il tipo di ricerca eseguita */
+	
+	// Creo un XMLHttpRequest
+	var xhttp = new XMLHttpRequest();
+	// Quando la API risponde
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		// Salvo il nome del mese
+  		texts = JSON.parse(this.responseText);
+  	}
+  };
+  // Avvio la comunicazione
+  xhttp.open("GET", "res/api/javascriptTranslateAssistant.php?action=pressEnterTranslate", false);
+  xhttp.send();
+	
 	// Recupero la query
 	query = document.getElementById("inputBox").value
 	// Cambio solo se non è stato digitato nulla
@@ -156,12 +174,12 @@ function changeSearchType() {
 		if (shType === 0) {
 			// Passo alla ricerca su Wolfram|Alpha
 			shType = 1;
-			document.getElementById("inputBox").placeholder = "Chiedi a Wolfram|Alpha";
+			document.getElementById("inputBox").placeholder = texts["Chiedi a Wolfram|Alpha"];
 			document.getElementById("buttonChar").className = "fas fa-calculator";
 		} else {
 			// Passo alla ricerca su Google
 			shType = 0;
-			document.getElementById("inputBox").placeholder = "Cerca con Google";
+			document.getElementById("inputBox").placeholder = texts["Cerca con Google"];
 			document.getElementById("buttonChar").className = "fas fa-search";
 		}
 	}

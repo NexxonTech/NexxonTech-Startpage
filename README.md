@@ -1,20 +1,21 @@
 # NexxonTech Startpage
-Codice sorgente della startpage disponibile su http://start.nexxontech.it
+Source code of the startpage available on http://start.nexxontech.it
 
-## Cos'è?
-NexxonTech Startpage è una pagina iniziale adatta a qualsiasi browser.
-Scritta utilizzando Bootstrap in maniera 100% responsive, NexxonTech Startpage è in grado di funzionare su qualsiasi dispositivo, desktop o mobile che sia.
+## What's this?
+NexxonTech Startpage is a home page suitable for any browser.
+Written using Bootstrap in a 100% responsive way, NexxonTech Startpage is able to work on any device, desktop or mobile.
 
-## Ospitami sul tuo server!
-Per funzionare, NexxonTech Startpage necessita soltanto di un server web (Apache/Nginx) e di PHP.
-Una volta clonato nella directory del server con il comando
-```sh
+## Host me on your server!
+To operate, NexxonTech Startpage only needs a web server (Apache/Nginx) and PHP.
+Once cloned into the server directory with the command
+```Sh
 git clone https://github.com/NexxonTech/NexxonTech-Startpage.git
 ```
-sarà sufficiente modificare qualche parametro di `config.template` e salvarlo come `config.php` per vedere il sistema completamente funzionante.
-- **$homeName**: Questa variabile determina il brand da mostrare in alto a sinistra nella pagina. Puoi utilizzare anche del codice HTML
-- **$clientId**: Dato che Nexxontech Startpage utilizza la API di Unsplash è necessario inserire in questa variabile il proprio client id.
-- **$cat**: L'id della categoria Unsplash da cui recuperare le immagini. Inserendo il numero 9039753 è possibile utilizzare il database curato direttamente da Riccardo Sacchetto.
-- **$fallbackAuthor**: Il nome dell'autore dell'immagine di fallback (L'immagine che viene mostrata nel caso in cui la API di Unsplash non sia disponibile)
-- **$fallbackAuthorUrl**: L'URL del profilo Unsplash (del tipo https://unsplash.com/@occhioverde03) dell'autore dell'immagine di fallback (L'immagine che viene mostrata nel caso in cui la API di Unsplash non sia disponibile)
-- **$defaultFavs**: Perferiti da mostrare ai nuovi utenti; questa variabile è un array strutturato come "[Nome del preferito]" => "[URL senza http:// o https://]]"
+simply modify some `config.template` parameters and save it as `config.php` to see the system fully functional.
+- **$homeName**: This variable determines the brand to be shown at the top left of the page. You can also use HTML code
+- **$dafaultLang**: Default startpage language
+- **$clientId**: Since Nexxontech Startpage uses the Unsplash API, you need to insert your client id in this variable.
+- **$cat**: The ID of the Unsplash category from which to retrieve images. By entering the number 9039753 it is possible to use the database directly maintained by Riccardo Sacchetto.
+- **$fallbackAuthor**: The name of the author of the fallback image (The image that is shown in case the Unsplash API is not available)
+- **$fallbackAuthorUrl**: The URL of the Unsplash profile (like https://unsplash.com/@occhioverde03) of the author of the fallback image (The image that is shown in case the API of Unsplash is not available)
+- **$defaultFavs**: Bookmarks to show to new users; this variable is an array structured like "[Favorite name]" => "[URL without http:// or https://]"

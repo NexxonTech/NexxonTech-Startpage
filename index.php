@@ -36,6 +36,9 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 	
 	// Carico il lettore dei preferiti
 	require "res/php/favReader.php";
+	
+	// Carico il file di lingua
+	require "res/langs/$defaultLang.php";
 ?>
 
 <html>
@@ -80,7 +83,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 				  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
 				  	<?php favList(); ?>
 					  <div class="dropdown-divider"></div>
-					  <a class="dropdown-item" data-toggle="modal" data-target="#gestionePreferiti"><i class="fas fa-cogs"></i> Gestisci preferiti</a>
+					  <a class="dropdown-item" data-toggle="modal" data-target="#gestionePreferiti"><i class="fas fa-cogs"></i> <?php echo($uiTexts["Gestisci preferiti"]); ?></a>
 				  </div>
 				</div>
 			</div>
@@ -100,7 +103,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 						<div class="row">
 							<!-- Casella di ricerca -->
 							<div class="col-11 p-sm-1 p-2">
-								<input id="inputBox" class="form-control form-control-sm mr-1" type="text" placeholder="Cerca con Google" style="background-color: rgba(F, F, F, 0.5);" autocomplete="off" autofocus>
+								<input id="inputBox" class="form-control form-control-sm mr-1" type="text" placeholder="<?php echo($uiTexts["Cerca con Google"]); ?>" style="background-color: rgba(F, F, F, 0.5);" autocomplete="off" autofocus>
 							</div>
 							<!-- Pulsante di ricerca -->
 						  <div class="col-1 p-sm-1 p-2">
@@ -114,7 +117,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- Footer -->
 			<div id="credit" class="container-fluid">
 				<!-- Crediti dell'immagine -->
-				<p style="float: left"><?php echo("Photo by <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> on <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a> | Vedi <a href='https://unsplash.com/collections/$cat?utm_source=nexxontech_startPage&utm_medium=referral'>tutta la collezione</a>"); ?></p>
+				<p style="float: left"><?php echo($uiTexts["Foto di"] . " <a href='$authorLink?utm_source=nexxontech_startPage&utm_medium=referral'>$autore</a> " . $uiTexts["su"] . " <a href='https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral'>Unsplash</a> | " . $uiTexts["Vedi"] . " <a href='https://unsplash.com/collections/$cat?utm_source=nexxontech_startPage&utm_medium=referral'>" . $uiTexts["tutta la collezione"] . "</a>"); ?></p>
 				<!-- NexxonTech Footer -->
 				<p align="right">Powered with ❤️ in 🇮🇹 by <a href="http://www.nexxontech.it">NexxonTech</a></p>
 			</div>
@@ -125,7 +128,7 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">Impostazioni dei preferiti</h5>
+		        <h5 class="modal-title"><?php echo($uiTexts["Impostazioni dei preferiti"]); ?></h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -135,8 +138,8 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		        <?php favManagerList(); ?>
 		      </div>
 		      <div class="modal-footer">
-		        <button id="favSaveBtn" type="button" class="btn btn-primary">Salva</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+		        <button id="favSaveBtn" type="button" class="btn btn-primary"><?php echo($uiTexts["Salva"]); ?></button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo($uiTexts["Annulla"]); ?></button>
 		      </div>
 		    </div>
 		  </div>
@@ -147,14 +150,14 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">Politica sui Cookie</h5>
+		        <h5 class="modal-title"><?php echo($uiTexts["Politica sui Cookie"]); ?></h5>
 		      </div>
 		      <div class="modal-body">
-		      	<p >Questo sito utilizza dei cookie tecnici (obbligatori) per fornire i suoi servizi in maniera corretta.</p>
-		      	<p>Questo messaggio ti viene mostrato per assicurarci che tu sia d'accordo con ciò.</p>
+		      	<p><?php echo($uiTexts["Testo Cookie 1"]); ?></p>
+		      	<p><?php echo($uiTexts["Testo Cookie 2"]); ?></p>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary" data-dismiss="modal">OK, Grazie</button>
+		        <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo($uiTexts["OK, Grazie"]); ?></button>
 		      </div>
 		    </div>
 		  </div>
