@@ -48,6 +48,7 @@ function startTime() {
   // Carico l'anno
   var y = today.getFullYear();
   // Aggiungo i leading-zero se necessario
+  h = checkTime(h);
   m = checkTime(m);
   s = checkTime(s);
   // Aggiorno l'orologio
@@ -208,4 +209,17 @@ $(document).delegate('#startSearch', 'click', function(event) {
 	/* Listener startSearch -> click: avvio la ricerca quando premo il pulsante di ricerca */
 	// Avvio la ricerca
   pressEnter();
+});
+
+// Carico lo sfondo in maniera asincrona
+window.addEventListener("load", function() {
+	// Creo una nuova immagine
+	var bgImg = new Image();
+	// Quando l'immagine sarà caricata
+	bgImg.onload = function(){
+		// La uso come background
+		document.getElementById("bgImage").style.backgroundImage = 'url(' + bgImg.src + ')';
+	};
+	// Avvio il download dell'immagine
+	bgImg.src = fullBgUrl;
 });

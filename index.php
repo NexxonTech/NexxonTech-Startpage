@@ -62,10 +62,14 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 		
 		<!-- Importo i files CSS del progetto -->
 		<link rel="stylesheet" href="res/css/index.css">
+		
+		<script>
+			var fullBgUrl = "<?php echo $fullBackgroundUrl; ?>";
+		</script>
 	</head>
 	<body style="height: 100%;" onload="startTime()">
 		<!-- Background sfocato scaricato da Unsplash -->
-		<div style="height: 100%; width: 100%; overflow: hidden;"><div id="bgImage" style="background-image: url('<?php echo $backgroundUrl; ?>');"></div></div>
+		<div id="bgImageContainer" style="height: 100%; width: 100%; overflow: hidden; display: block;"><div id="bgImage" style="background-image: url('<?php echo $backgroundUrl; ?>');"></div></div>
 		
 		<!-- Main area -->
 		<div class="container-fluid" id="main">

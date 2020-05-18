@@ -20,16 +20,22 @@ along with NexxonTech Startpage.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+// Compongo l'URL della API
 $apiUrl = "https://api.unsplash.com/photos/random?client_id=$clientId&collections=$cat&count=1&orentation=landscape&content_filter=high";
+// Contatto l'API
 $apiResponse = file_get_contents($apiUrl);
+// Se la chiamata non va a buon fine
 if($apiResponse == false) {
+	// Utilizzo l'immagine di fallback
 	$backgroundUrl = "res/img/fallbackImg.jpg";
 	$autore = $fallbackAuthor;
 	$authorLink = $fallbackAuthorUrl;
 } else {
+	// Carico l'immagine inviatami da Unsplash
 	$jsonResponse = utf8_encode($apiResponse);
 	$response = json_decode($jsonResponse);
-	$backgroundUrl = $response[0]->{"urls"}->{"full"};
+	$backgroundUrl = $response[0]->{"urls"}->{"thumb"};
+	$fullBackgroundUrl = $response[0]->{"urls"}->{"raw"};
 	$autore = $response[0]->{"user"}->{"name"};
 	$authorLink = $response[0]->{"user"}->{"links"}->{"html"};
 }
