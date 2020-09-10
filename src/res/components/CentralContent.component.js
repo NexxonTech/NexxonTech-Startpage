@@ -1,6 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+	faSearch,
+	faArrowCircleRight,
+	faCalculator,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default class CentralComponent extends React.Component {
 	constructor(props) {
@@ -10,6 +14,8 @@ export default class CentralComponent extends React.Component {
 			userSearch: "",
 			hour: "00:00:00",
 			date: "01/01/2000",
+			searchStatus: true,
+			searchFunction: 0,
 		};
 	}
 
@@ -38,14 +44,52 @@ export default class CentralComponent extends React.Component {
 	};
 
 	startSearch = () => {
-		if (this.props.engine === "0") {
-			const ddgurl = "https://duckduckgo.com/?t=nexxontech_Startpage&q=";
-			window.location = ddgurl + this.state.userSearch;
+		if (this.state.userSearch !== "") {
+			if (this.state.searchStatus) {
+				const userSearchEncoded = encodeURIComponent(this.state.userSearch);
+				if (this.state.searchFunction === 0) {
+					if (this.props.engine === "0") {
+						const ddgurl = "https://duckduckgo.com/?t=nexxontech_Startpage&q=";
+						window.location = ddgurl + userSearchEncoded;
+					} else {
+						const gurl =
+							"https://www.google.com/search?source=nexxontech_Startpage&q=";
+						window.location = gurl + userSearchEncoded;
+					}
+				} else if (this.state.searchFunction === 1) {
+					const wolframurl = "https://www.wolframalpha.com/input/?i=";
+					window.location = wolframurl + userSearchEncoded;
+				}
+			} else {
+				if (
+					this.state.userSearch.startsWith("http://") ||
+					this.state.userSearch.startsWith("https://")
+				) {
+					window.location = encodeURIComponent(this.state.userSearch);
+				} else {
+					window.location =
+						"https://" + encodeURIComponent(this.state.userSearch);
+				}
+			}
 		} else {
-			const gurl =
-				"https://www.google.com/search?source=nexxontech_Startpage&q=";
-			window.location = gurl + this.state.userSearch;
+			this.setState({ searchStatus: !this.state.searchStatus });
 		}
+	};
+
+	rotateFuction = () => {
+		var newFunction = 0;
+		switch (this.state.searchFunction) {
+			case 0:
+				newFunction = 1;
+				break;
+			case 1:
+				newFunction = 0;
+				break;
+			default:
+				newFunction = 0;
+				break;
+		}
+		this.setState({ searchFunction: newFunction });
 	};
 
 	componentDidMount() {
@@ -60,8 +104,25 @@ export default class CentralComponent extends React.Component {
 	}
 
 	render() {
-		var placeholder =
-			this.props.engine === "0" ? "Cerca con DuckDuckGo" : "Cerca con Google";
+		var placeholder = "";
+		var icon = null;
+		if (this.state.searchStatus) {
+			if (this.state.searchFunction === 0) {
+				if (this.props.engine === "0") {
+					placeholder = "Cerca con DuckDuckGo";
+					icon = faSearch;
+				} else {
+					placeholder = "Cerca con Google";
+					icon = faSearch;
+				}
+			} else if (this.state.searchFunction === 1) {
+				placeholder = "Chiedi a Wolfram|Alpha";
+				icon = faCalculator;
+			}
+		} else {
+			placeholder = "Inserisci un URL";
+			icon = faArrowCircleRight;
+		}
 
 		return (
 			<div id="centralContent">
@@ -82,9 +143,13 @@ export default class CentralComponent extends React.Component {
 							placeholder={placeholder}
 							value={this.state.userSearch}
 							onChange={(e) => this.setState({ userSearch: e.target.value })}
-							onKeyPress={(e) => {
-								if (e.charCode === 13) {
+							onKeyDown={(e) => {
+								if (e.which === 13) {
+									e.preventDefault();
 									this.startSearch();
+								} else if (e.which === 9) {
+									e.preventDefault();
+									this.rotateFuction();
 								}
 							}}
 							style={{
@@ -103,7 +168,7 @@ export default class CentralComponent extends React.Component {
 							style={{ width: "100%" }}
 							onClick={this.startSearch}
 						>
-							<FontAwesomeIcon icon={faSearch} />
+							<FontAwesomeIcon icon={icon} />
 						</button>
 					</div>
 				</div>
