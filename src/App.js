@@ -2,6 +2,8 @@ import React from "react";
 import "./res/css/App.css";
 import axios from "axios";
 
+import locales from "./res/locale";
+
 import Toast from "react-bootstrap/Toast";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -18,7 +20,7 @@ class App extends React.Component {
 			toastStatuses = JSON.parse(localStorage.getItem("toastStatuses"));
 		}
 
-		var settings = { searchEngine: "0" };
+		var settings = { searchEngine: "0", language: "en" };
 		if (localStorage.getItem("settings")) {
 			settings = JSON.parse(localStorage.getItem("settings"));
 		}
@@ -60,7 +62,10 @@ class App extends React.Component {
 				>
 					<div id="contentContainer" className="container-fluid">
 						<BrandBar changeSettings={this.changeSettings} />
-						<CentralContent engine={this.state.settings.searchEngine} />
+						<CentralContent
+							engine={this.state.settings.searchEngine}
+							lang={this.state.settings.language}
+						/>
 					</div>
 					<div id="toastArea">
 						<Toast
@@ -79,7 +84,7 @@ class App extends React.Component {
 						>
 							<Toast.Header>
 								<div style={{ width: "100%" }}>
-									Benvenuto!
+									{locales[this.state.settings.language].toasts.welcome.title}
 									<img
 										src="holder.js/20x20?text=%20"
 										className="rounded mr-2"
@@ -89,14 +94,23 @@ class App extends React.Component {
 								</div>
 							</Toast.Header>
 							<Toast.Body>
-								<p>Benvenuto nella nuova versione di NexxonTech Startpage!</p>
 								<p>
-									La app si è aggiornata per essere ancora più veloce ed
-									elegante, perfetta per ogni PC.
+									{
+										locales[this.state.settings.language].toasts.welcome
+											.paragraphs[0]
+									}
+								</p>
+								<p>
+									{
+										locales[this.state.settings.language].toasts.welcome
+											.paragraphs[1]
+									}
 								</p>
 								<p style={{ marginBottom: 0 }}>
-									Provala subito per scoprire tutte le novità e per
-									personalizzarla secondo i tuoi gusti.
+									{
+										locales[this.state.settings.language].toasts.welcome
+											.paragraphs[2]
+									}
 								</p>
 							</Toast.Body>
 						</Toast>
@@ -116,7 +130,7 @@ class App extends React.Component {
 						>
 							<Toast.Header>
 								<div style={{ width: "100%" }}>
-									Cookie notice
+									{locales[this.state.settings.language].toasts.cookie.title}
 									<img
 										src="holder.js/20x20?text=%20"
 										className="rounded mr-2"
@@ -126,20 +140,31 @@ class App extends React.Component {
 								</div>
 							</Toast.Header>
 							<Toast.Body>
-								<p>Grazie per esserti interessato a NexxonTech Startpage.</p>
 								<p>
-									Ti mostriamo questo messaggio per ricordarti che questa app fa
-									uso di cookie (API localStorage, per la precisione) al fine di
-									conservare informazioni necessarie al funzionamento stesso del
-									software.
+									{
+										locales[this.state.settings.language].toasts.cookie
+											.paragraphs[0]
+									}
+								</p>
+								<p>
+									{
+										locales[this.state.settings.language].toasts.cookie
+											.paragraphs[1]
+									}
 								</p>
 								<p style={{ marginBottom: 0 }}>
-									Non sono necessarie operazioni da parte tua.
+									{
+										locales[this.state.settings.language].toasts.cookie
+											.paragraphs[2]
+									}
 								</p>
 							</Toast.Body>
 						</Toast>
 					</div>
-					<Footer photoData={this.state.unsplashImageData} />
+					<Footer
+						photoData={this.state.unsplashImageData}
+						lang={this.state.settings.language}
+					/>
 				</div>
 			);
 		} else {

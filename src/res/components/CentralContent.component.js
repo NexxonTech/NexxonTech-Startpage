@@ -6,6 +6,8 @@ import {
 	faCalculator,
 } from "@fortawesome/free-solid-svg-icons";
 
+import locales from "../locale";
+
 export default class CentralComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -109,18 +111,18 @@ export default class CentralComponent extends React.Component {
 		if (this.state.searchStatus) {
 			if (this.state.searchFunction === 0) {
 				if (this.props.engine === "0") {
-					placeholder = "Cerca con DuckDuckGo";
+					placeholder = locales[this.props.lang].searchWith.duckduckgo;
 					icon = faSearch;
 				} else {
-					placeholder = "Cerca con Google";
+					placeholder = locales[this.props.lang].searchWith.google;
 					icon = faSearch;
 				}
 			} else if (this.state.searchFunction === 1) {
-				placeholder = "Chiedi a Wolfram|Alpha";
+				placeholder = locales[this.props.lang].searchWith.wolfram;
 				icon = faCalculator;
 			}
 		} else {
-			placeholder = "Inserisci un URL";
+			placeholder = locales[this.props.lang].searchWith.url;
 			icon = faArrowCircleRight;
 		}
 

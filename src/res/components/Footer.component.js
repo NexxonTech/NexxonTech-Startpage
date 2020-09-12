@@ -2,6 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
+import locales from "../locale";
+
 export default class Footer extends React.Component {
 	render() {
 		const photoData = this.props.photoData;
@@ -9,7 +11,7 @@ export default class Footer extends React.Component {
 		return (
 			<div id="footer">
 				<p id="credit">
-					Foto di{" "}
+					{locales[this.props.lang].footer.photoBy + " "}
 					<a
 						href={
 							photoData.user.links.html +
@@ -18,7 +20,7 @@ export default class Footer extends React.Component {
 					>
 						{photoData.user.name}
 					</a>{" "}
-					su{" "}
+					{locales[this.props.lang].footer.on + " "}
 					<a href="https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral">
 						Unsplash
 					</a>

@@ -9,6 +9,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 
+import locales from "../locale";
+
 import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -28,7 +30,7 @@ export default class BrandBar extends React.Component {
 			bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
 		}
 
-		var settings = { searchEngine: "0" };
+		var settings = { searchEngine: "0", language: "en" };
 		if (localStorage.getItem("settings")) {
 			settings = JSON.parse(localStorage.getItem("settings"));
 		}
@@ -64,7 +66,12 @@ export default class BrandBar extends React.Component {
 					style={{ paddingTop: "10px", paddingBottom: "10px" }}
 				>
 					<Col xs={4} style={{ paddingRight: "5px" }}>
-						<Form.Label>Titolo del segnalibro</Form.Label>
+						<Form.Label>
+							{
+								locales[this.state.settings.language].bookmarksManagement
+									.bookmarkTitle
+							}
+						</Form.Label>
 						<Form.Control
 							value={bookmark.title}
 							onChange={(e) => {
@@ -72,11 +79,16 @@ export default class BrandBar extends React.Component {
 								newBookmarks[index].title = e.target.value;
 								this.setState({ bookmarks: newBookmarks });
 							}}
-							placeholder="Titolo del segnalibro"
+							placeholder={
+								locales[this.state.settings.language].bookmarksManagement
+									.bookmarkTitle
+							}
 						/>
 					</Col>
 					<Col xs={7} style={{ paddingLeft: "5px" }}>
-						<Form.Label>URL del segnalibro</Form.Label>
+						<Form.Label>
+							{locales[this.state.settings.language].bookmarksManagement.url}
+						</Form.Label>
 						<Form.Control
 							value={bookmark.url}
 							onChange={(e) => {
@@ -84,7 +96,9 @@ export default class BrandBar extends React.Component {
 								newBookmarks[index].url = e.target.value;
 								this.setState({ bookmarks: newBookmarks });
 							}}
-							placeholder="URL del segnalibro"
+							placeholder={
+								locales[this.state.settings.language].bookmarksManagement.url
+							}
 						/>
 					</Col>
 					<Col xs={1}>
@@ -134,12 +148,14 @@ export default class BrandBar extends React.Component {
 						{bookmarksList}
 						<Dropdown.Divider />
 						<Dropdown.Item onClick={() => this.setState({ modalShow: true })}>
-							<FontAwesomeIcon icon={faBookmark} /> Gestione segnalibri
+							<FontAwesomeIcon icon={faBookmark} />{" "}
+							{locales[this.state.settings.language].bookmarksManagement.title}
 						</Dropdown.Item>
 						<Dropdown.Item
 							onClick={() => this.setState({ settingsShow: true })}
 						>
-							<FontAwesomeIcon icon={faCogs} /> Impostazioni
+							<FontAwesomeIcon icon={faCogs} />{" "}
+							{locales[this.state.settings.language].settings.title}
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
@@ -148,7 +164,9 @@ export default class BrandBar extends React.Component {
 					onHide={() => this.setState({ modalShow: false })}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title>Modifica i segnalibri</Modal.Title>
+						<Modal.Title>
+							{locales[this.state.settings.language].bookmarksManagement.title}
+						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<Button
@@ -169,7 +187,8 @@ export default class BrandBar extends React.Component {
 							}}
 						>
 							<FontAwesomeIcon icon={faPlusCircle} />
-							&nbsp;Nuovo
+							&nbsp;
+							{locales[this.state.settings.language].bookmarksManagement.new}
 						</Button>
 						<Form>{formRows}</Form>
 					</Modal.Body>
@@ -184,7 +203,7 @@ export default class BrandBar extends React.Component {
 								this.setState({ modalShow: false });
 							}}
 						>
-							Salva
+							{locales[this.state.settings.language].bookmarksManagement.save}
 						</Button>
 					</Modal.Footer>
 				</Modal>
@@ -193,12 +212,16 @@ export default class BrandBar extends React.Component {
 					onHide={() => this.setState({ settingsShow: false })}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title>Impostazioni</Modal.Title>
+						<Modal.Title>
+							{locales[this.state.settings.language].settings.title}
+						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<Form>
 							<Form.Group>
-								<Form.Label>Motore di ricerca</Form.Label>
+								<Form.Label>
+									{locales[this.state.settings.language].settings.searchEngine}
+								</Form.Label>
 								<Form.Control
 									value={this.state.settings.searchEngine}
 									selectedvalue={this.state.settings.searchEngine}
@@ -212,8 +235,33 @@ export default class BrandBar extends React.Component {
 									}
 									as="select"
 								>
-									<option value="0">DuckDuckGo (Consigliato)</option>
+									<option value="0">
+										DuckDuckGo (
+										{locales[this.state.settings.language].settings.recommended}
+										)
+									</option>
 									<option value="1">Google</option>
+								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label>
+									{locales[this.state.settings.language].settings.languages}
+								</Form.Label>
+								<Form.Control
+									value={this.state.settings.language}
+									selectedvalue={this.state.settings.language}
+									onChange={(e) =>
+										this.setState({
+											settings: {
+												...this.state.settings,
+												language: e.target.value,
+											},
+										})
+									}
+									as="select"
+								>
+									<option value="en">English</option>
+									<option value="it">Italiano</option>
 								</Form.Control>
 							</Form.Group>
 						</Form>
@@ -230,7 +278,7 @@ export default class BrandBar extends React.Component {
 								this.setState({ settingsShow: false });
 							}}
 						>
-							Salva
+							{locales[this.state.settings.language].settings.save}
 						</Button>
 					</Modal.Footer>
 				</Modal>
