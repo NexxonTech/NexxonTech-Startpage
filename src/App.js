@@ -17,12 +17,18 @@ class App extends React.Component {
 
 		var toastStatuses = { welcomeToast: true, cookieToast: true };
 		if (localStorage.getItem("toastStatuses")) {
-			toastStatuses = JSON.parse(localStorage.getItem("toastStatuses"));
+			toastStatuses = {
+				...toastStatuses,
+				...JSON.parse(localStorage.getItem("toastStatuses")),
+			};
 		}
 
 		var settings = { searchEngine: "0", language: "en" };
 		if (localStorage.getItem("settings")) {
-			settings = JSON.parse(localStorage.getItem("settings"));
+			settings = {
+				...settings,
+				...JSON.parse(localStorage.getItem("settings")),
+			};
 		}
 
 		this.state = {

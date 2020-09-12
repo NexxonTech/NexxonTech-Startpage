@@ -32,7 +32,10 @@ export default class BrandBar extends React.Component {
 
 		var settings = { searchEngine: "0", language: "en" };
 		if (localStorage.getItem("settings")) {
-			settings = JSON.parse(localStorage.getItem("settings"));
+			settings = {
+				...settings,
+				...JSON.parse(localStorage.getItem("settings")),
+			};
 		}
 
 		this.state = {
