@@ -11,7 +11,12 @@ Once cloned into the server directory with the command
 ```Sh
 git clone https://github.com/NexxonTech/NexxonTech-Startpage.git
 ```
-the startpage can be served to your users with a little customization of the .htaccess file:
+and built using
+```Sh
+npm install
+npm run build
+```
+the Start Page can be found in the ```build``` directory and served to your users with a little customization of the .htaccess file:
 ```
 Options -MultiViews
 RewriteEngine On
