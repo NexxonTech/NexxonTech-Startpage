@@ -24,6 +24,7 @@ export default {
 		title: "Impostazioni",
 		searchEngine: "Motore di ricerca",
 		languages: "Lingua",
+		startpageTitle: "Titolo della Start Page",
 		recommended: "Consigliato",
 		save: "Salva",
 	},

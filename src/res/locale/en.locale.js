@@ -24,6 +24,7 @@ export default {
 		title: "Settings",
 		searchEngine: "Search engine",
 		languages: "Language",
+		startpageTitle: "Start Page title",
 		recommended: "Recommended",
 		save: "Save",
 	},

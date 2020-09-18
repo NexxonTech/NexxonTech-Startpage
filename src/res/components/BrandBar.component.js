@@ -30,7 +30,11 @@ export default class BrandBar extends React.Component {
 			bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
 		}
 
-		var settings = { searchEngine: "0", language: "en" };
+		var settings = {
+			searchEngine: "0",
+			language: "en",
+			startpageTitle: "NexxonTech",
+		};
 		if (localStorage.getItem("settings")) {
 			settings = {
 				...settings,
@@ -129,7 +133,7 @@ export default class BrandBar extends React.Component {
 		return (
 			<div id="branding" className="mt-2 w-100">
 				<h1>
-					<b>Nexxon</b>Tech
+					{this.state.settings.startpageTitle}
 					<sup>
 						<span style={{ fontSize: "15px" }}>StartPage</span>
 					</sup>
@@ -266,6 +270,26 @@ export default class BrandBar extends React.Component {
 									<option value="en">English</option>
 									<option value="it">Italiano</option>
 								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label>
+									{
+										locales[this.state.settings.language].settings
+											.startpageTitle
+									}
+								</Form.Label>
+								<Form.Control
+									type="text"
+									value={this.state.settings.startpageTitle}
+									onChange={(e) => {
+										this.setState({
+											settings: {
+												...this.state.settings,
+												startpageTitle: e.target.value,
+											},
+										});
+									}}
+								/>
 							</Form.Group>
 						</Form>
 					</Modal.Body>
