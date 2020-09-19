@@ -1,5 +1,7 @@
 # NexxonTech Startpage
 
+![GitHub](https://img.shields.io/github/license/nexxontech/nexxontech-startpage?style=flat-square)
+[![BMAC](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square)](https://www.buymeacoffee.com/Occhioverde03)
 Source code of the startpage available on http://start.nexxontech.it
 
 ## What's this?

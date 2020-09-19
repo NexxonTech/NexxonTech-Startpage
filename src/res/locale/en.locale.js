@@ -18,6 +18,7 @@ export default {
 		new: "New",
 		bookmarkTitle: "Bookmark title",
 		url: "Bookmark URL",
+		editDisabled: "Edit locked by this Start Page host",
 		save: "Save",
 	},
 	settings: {
@@ -25,6 +26,7 @@ export default {
 		searchEngine: "Search engine",
 		languages: "Language",
 		twelveHours: "Clock format",
+		dateFormat: "Date format",
 		startpageTitle: "Start Page title",
 		recommended: "Recommended",
 		save: "Save",

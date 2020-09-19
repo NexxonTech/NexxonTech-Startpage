@@ -18,6 +18,7 @@ export default {
 		new: "Nuovo",
 		bookmarkTitle: "Titolo del segnalibro",
 		url: "URL del segnalibro",
+		editDisabled: "Modifica bloccata dall'ospite di questa Start Page",
 		save: "Salva",
 	},
 	settings: {
@@ -26,6 +27,7 @@ export default {
 		languages: "Lingua",
 		startpageTitle: "Titolo della Start Page",
 		twelveHours: "Formato dell'orologio",
+		dateFormat: "Formato della data",
 		recommended: "Consigliato",
 		save: "Salva",
 	},

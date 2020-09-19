@@ -22,6 +22,9 @@ export default class CentralComponent extends React.Component {
 	}
 
 	currentTime = () => {
+		var hourClock = "";
+		var dateClock = "";
+
 		const date = new Date();
 
 		var hour = date.getHours();
@@ -34,19 +37,31 @@ export default class CentralComponent extends React.Component {
 		if (this.props.twelveHours === "true") {
 			const ampm = hour >= 12 ? "PM" : "AM";
 			hour = hour > 12 ? this.updateTime(hour - 12) : this.updateTime(hour);
-
-			this.setState({
-				hour: hour + ":" + min + ":" + sec + " " + ampm,
-				date: day + "/" + month + "/" + year,
-			});
+			hourClock = hour + ":" + min + ":" + sec + " " + ampm;
 		} else {
 			hour = this.updateTime(hour);
-
-			this.setState({
-				hour: hour + ":" + min + ":" + sec,
-				date: day + "/" + month + "/" + year,
-			});
+			hourClock = hour + ":" + min + ":" + sec;
 		}
+
+		switch (this.props.dateFormat) {
+			case "DMY":
+				dateClock = day + "/" + month + "/" + year;
+				break;
+			case "YMD":
+				dateClock = year + "/" + month + "/" + day;
+				break;
+			case "MDY":
+				dateClock = month + "/" + day + "/" + year;
+				break;
+			default:
+				dateClock = day + "/" + month + "/" + year;
+				break;
+		}
+
+		this.setState({
+			hour: hourClock,
+			date: dateClock,
+		});
 	};
 
 	updateTime = (k) => {

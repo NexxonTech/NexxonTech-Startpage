@@ -67,6 +67,11 @@ export default class BrandBar extends React.Component {
 
 		var formRows = [];
 		formRows = this.state.bookmarks.map((bookmark, index) => {
+			var disableBookmarkEdit = false;
+			if (bookmark.locked === "true") {
+				disableBookmarkEdit = true;
+			}
+
 			return (
 				<Form.Row
 					key={bookmark.key}
@@ -82,13 +87,22 @@ export default class BrandBar extends React.Component {
 						<Form.Control
 							value={bookmark.title}
 							onChange={(e) => {
-								var newBookmarks = [...this.state.bookmarks];
-								newBookmarks[index].title = e.target.value;
-								this.setState({ bookmarks: newBookmarks });
+								if (!disableBookmarkEdit) {
+									var newBookmarks = [...this.state.bookmarks];
+									newBookmarks[index].title = e.target.value;
+									this.setState({ bookmarks: newBookmarks });
+								}
 							}}
 							placeholder={
 								locales[this.state.settings.language].bookmarksManagement
 									.bookmarkTitle
+							}
+							disabled={disableBookmarkEdit}
+							title={
+								disableBookmarkEdit
+									? locales[this.state.settings.language].bookmarksManagement
+											.editDisabled
+									: ""
 							}
 						/>
 					</Col>
@@ -99,12 +113,21 @@ export default class BrandBar extends React.Component {
 						<Form.Control
 							value={bookmark.url}
 							onChange={(e) => {
-								var newBookmarks = [...this.state.bookmarks];
-								newBookmarks[index].url = e.target.value;
-								this.setState({ bookmarks: newBookmarks });
+								if (!disableBookmarkEdit) {
+									var newBookmarks = [...this.state.bookmarks];
+									newBookmarks[index].url = e.target.value;
+									this.setState({ bookmarks: newBookmarks });
+								}
 							}}
 							placeholder={
 								locales[this.state.settings.language].bookmarksManagement.url
+							}
+							disabled={disableBookmarkEdit}
+							title={
+								disableBookmarkEdit
+									? locales[this.state.settings.language].bookmarksManagement
+											.editDisabled
+									: ""
 							}
 						/>
 					</Col>
@@ -118,10 +141,19 @@ export default class BrandBar extends React.Component {
 								float: "right",
 							}}
 							onClick={() => {
-								var newBookmarks = [...this.state.bookmarks];
-								newBookmarks.splice(index, 1);
-								this.setState({ bookmarks: newBookmarks });
+								if (!disableBookmarkEdit) {
+									var newBookmarks = [...this.state.bookmarks];
+									newBookmarks.splice(index, 1);
+									this.setState({ bookmarks: newBookmarks });
+								}
 							}}
+							disabled={disableBookmarkEdit}
+							title={
+								disableBookmarkEdit
+									? locales[this.state.settings.language].bookmarksManagement
+											.editDisabled
+									: ""
+							}
 						>
 							<FontAwesomeIcon icon={faTrash} />
 						</Button>
@@ -239,6 +271,7 @@ export default class BrandBar extends React.Component {
 											key: uuidv4(),
 											title: "",
 											url: "",
+											locked: "false",
 										},
 									],
 								});
@@ -346,6 +379,28 @@ export default class BrandBar extends React.Component {
 								>
 									<option value="false">24h</option>
 									<option value="true">12h</option>
+								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label>
+									{locales[this.state.settings.language].settings.dateFormat}
+								</Form.Label>
+								<Form.Control
+									value={this.state.settings.dateFormat}
+									selectedvalue={this.state.settings.dateFormat}
+									onChange={(e) =>
+										this.setState({
+											settings: {
+												...this.state.settings,
+												dateFormat: e.target.value,
+											},
+										})
+									}
+									as="select"
+								>
+									<option value="DMY">DD/MM/YYYY (DMY)</option>
+									<option value="YMD">YYYY/MM/DD (YMD)</option>
+									<option value="MDY">MM/DD/YYYY (MDY)</option>
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>

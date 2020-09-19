@@ -45,7 +45,7 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get("https://apis.nexxontech.it/unsplash-random.php").then((res) => {
+		axios.get(config.unsplashApiUrl).then((res) => {
 			this.setState({
 				unsplashLoaded: true,
 				unsplashImageData: res.data[0],
@@ -73,6 +73,7 @@ class App extends React.Component {
 							engine={this.state.settings.searchEngine}
 							lang={this.state.settings.language}
 							twelveHours={this.state.settings.twelveHours}
+							dateFormat={this.state.settings.dateFormat}
 						/>
 					</div>
 					<div id="toastArea">

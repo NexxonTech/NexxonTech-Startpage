@@ -6,16 +6,19 @@ export default {
 			key: uuidv4(),
 			title: "DuckDuckGo",
 			url: "http://duckduckgo.com",
+			locked: "false",
 		},
 		{
 			key: uuidv4(),
 			title: "NexxonTech",
 			url: "http://www.nexxontech.it",
+			locked: "false",
 		},
 		{
 			key: uuidv4(),
 			title: "Wikipedia",
 			url: "http://www.wikipedia.org",
+			locked: "false",
 		},
 	],
 	settings: {
@@ -23,5 +26,7 @@ export default {
 		language: "en",
 		startpageTitle: "NexxonTech",
 		twelveHours: "false",
+		dateFormat: "DMY",
 	},
+	unsplashApiUrl: "https://apis.nexxontech.it/unsplash-random.php",
 };
