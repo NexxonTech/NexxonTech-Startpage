@@ -11,6 +11,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 import locales from "../locale";
+import config from "../../config/default";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
@@ -22,21 +23,12 @@ export default class BrandBar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		var bookmarks = [
-			{ key: uuidv4(), title: "DuckDuckGo", url: "http://duckduckgo.com" },
-			{ key: uuidv4(), title: "NexxonTech", url: "http://www.nexxontech.it" },
-			{ key: uuidv4(), title: "Wikipedia", url: "http://it.wikipedia.org" },
-		];
+		var bookmarks = config.bookmarks;
 		if (localStorage.getItem("bookmarks")) {
 			bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
 		}
 
-		var settings = {
-			searchEngine: "0",
-			language: "en",
-			startpageTitle: "NexxonTech",
-			twelveHours: "false",
-		};
+		var settings = config.settings;
 		if (localStorage.getItem("settings")) {
 			settings = {
 				...settings,
@@ -217,10 +209,7 @@ export default class BrandBar extends React.Component {
 						<Button
 							variant="primary"
 							onClick={() => {
-								localStorage.setItem(
-									"quickNote",
-									JSON.stringify(this.state.quickNote)
-								);
+								localStorage.setItem("quickNote", this.state.quickNote);
 								this.setState({ quickNoteShow: false });
 							}}
 						>

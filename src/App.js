@@ -3,6 +3,7 @@ import "./res/css/App.css";
 import axios from "axios";
 
 import locales from "./res/locale";
+import config from "./config/default";
 
 import Toast from "react-bootstrap/Toast";
 import Spinner from "react-bootstrap/Spinner";
@@ -23,12 +24,7 @@ class App extends React.Component {
 			};
 		}
 
-		var settings = {
-			searchEngine: "0",
-			language: "en",
-			startpageTitle: "NexxonTech",
-			twelveHours: "false",
-		};
+		var settings = config.settings;
 		if (localStorage.getItem("settings")) {
 			settings = {
 				...settings,
