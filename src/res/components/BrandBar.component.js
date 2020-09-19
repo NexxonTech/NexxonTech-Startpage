@@ -34,6 +34,7 @@ export default class BrandBar extends React.Component {
 			searchEngine: "0",
 			language: "en",
 			startpageTitle: "NexxonTech",
+			twelveHours: "false",
 		};
 		if (localStorage.getItem("settings")) {
 			settings = {
@@ -269,6 +270,27 @@ export default class BrandBar extends React.Component {
 								>
 									<option value="en">English</option>
 									<option value="it">Italiano</option>
+								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label>
+									{locales[this.state.settings.language].settings.twelveHours}
+								</Form.Label>
+								<Form.Control
+									value={this.state.settings.twelveHours}
+									selectedvalue={this.state.settings.twelveHours}
+									onChange={(e) =>
+										this.setState({
+											settings: {
+												...this.state.settings,
+												twelveHours: e.target.value,
+											},
+										})
+									}
+									as="select"
+								>
+									<option value="false">24h</option>
+									<option value="true">12h</option>
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>

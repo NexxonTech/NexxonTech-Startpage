@@ -23,7 +23,12 @@ class App extends React.Component {
 			};
 		}
 
-		var settings = { searchEngine: "0", language: "en" };
+		var settings = {
+			searchEngine: "0",
+			language: "en",
+			startpageTitle: "NexxonTech",
+			twelveHours: "false",
+		};
 		if (localStorage.getItem("settings")) {
 			settings = {
 				...settings,
@@ -71,6 +76,7 @@ class App extends React.Component {
 						<CentralContent
 							engine={this.state.settings.searchEngine}
 							lang={this.state.settings.language}
+							twelveHours={this.state.settings.twelveHours}
 						/>
 					</div>
 					<div id="toastArea">

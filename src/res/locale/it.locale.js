@@ -25,6 +25,7 @@ export default {
 		searchEngine: "Motore di ricerca",
 		languages: "Lingua",
 		startpageTitle: "Titolo della Start Page",
+		twelveHours: "Formato dell'orologio",
 		recommended: "Consigliato",
 		save: "Salva",
 	},
