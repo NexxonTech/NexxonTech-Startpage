@@ -29,6 +29,10 @@ export default {
 		recommended: "Recommended",
 		save: "Save",
 	},
+	quickNotes: {
+		title: "Quick notes",
+		save: "Save",
+	},
 	toasts: {
 		welcome: {
 			title: "Welcome!",

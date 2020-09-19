@@ -6,6 +6,7 @@ import {
 	faPlusCircle,
 	faTrash,
 	faBookmark,
+	faStickyNote,
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 
@@ -43,11 +44,17 @@ export default class BrandBar extends React.Component {
 			};
 		}
 
+		var quickNote = "";
+		if (localStorage.getItem("quickNote")) {
+			quickNote = localStorage.getItem("quickNote");
+		}
+
 		this.state = {
 			bookmarks,
 			modalShow: false,
 			settingsShow: false,
 			settings,
+			quickNote,
 		};
 	}
 
@@ -167,6 +174,60 @@ export default class BrandBar extends React.Component {
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
+				<Button
+					id="buttonNote"
+					onClick={() => this.setState({ quickNoteShow: true })}
+					style={{
+						padding: 0,
+						border: "none",
+						background: "none",
+						margin: "10px",
+						color: "white",
+					}}
+				>
+					<FontAwesomeIcon icon={faStickyNote} />
+				</Button>
+
+				<Modal
+					show={this.state.quickNoteShow}
+					onHide={() => this.setState({ quickNoteShow: false })}
+					size="lg"
+				>
+					<Modal.Header closeButton>
+						<Modal.Title>
+							{locales[this.state.settings.language].quickNotes.title}
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<Form>
+							<Form.Group>
+								<Form.Control
+									as="textarea"
+									value={this.state.quickNote}
+									onChange={(e) => {
+										this.setState({
+											quickNote: e.target.value,
+										});
+									}}
+								/>
+							</Form.Group>
+						</Form>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button
+							variant="primary"
+							onClick={() => {
+								localStorage.setItem(
+									"quickNote",
+									JSON.stringify(this.state.quickNote)
+								);
+								this.setState({ quickNoteShow: false });
+							}}
+						>
+							{locales[this.state.settings.language].quickNotes.save}
+						</Button>
+					</Modal.Footer>
+				</Modal>
 				<Modal
 					show={this.state.modalShow}
 					onHide={() => this.setState({ modalShow: false })}
@@ -225,7 +286,12 @@ export default class BrandBar extends React.Component {
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<Form>
+						<Form
+							onSubmit={(e) => {
+								e.preventDefault();
+								e.stopPropagation();
+							}}
+						>
 							<Form.Group>
 								<Form.Label>
 									{locales[this.state.settings.language].settings.searchEngine}

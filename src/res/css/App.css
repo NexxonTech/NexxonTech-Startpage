@@ -80,6 +80,10 @@
 	display: none;
 }
 
+#buttonNote {
+	float: right;
+}
+
 #toastArea {
 	position: absolute;
 	top: 20px;
