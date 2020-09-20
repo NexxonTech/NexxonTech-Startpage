@@ -43,14 +43,14 @@ Every default setting is picked from `src/config/default.js`.
 
 If you want to present the Start Page to your users with different bookmarks or settings then those set by us, you can edit that file prior to running `npm run build`.
 
-## Help us to translate and enbetter the application
+## Help us to translate and improve the application
 
 ### Edit the code
 
-If you want to make some changes to the application code you just have to fork thi repository, clone it on you device and edit the files. Than, you can open a Pull Request and we'll evaluate it.
+If you want to make some changes to the application code you just have to fork this repository, clone it on you device and edit the files. Then, you can open a Pull Request and we'll evaluate it.
 
-### Translate the application in you language
+### Translate the application in your language
 
 If you want to translate NexxonTech Startpage you have to follow the same steps of the "Edit code" section, with a difference: you specifically have to copy an existent language file that you can find in `src/locale/*.locale.js` in another one with a name written like `[ISO 639-1 code of the language].locale.js`.
 
-Than, you have to translate the sentences that you can find in it, commit the file and open a Pull Request. It'll be our priority to revision your translation and to include it in the selectable ones.
+Then, you have to translate the sentences that you can find in it, commit the file and open a Pull Request. It'll be our priority to revise your translation and to include it in the selectable ones.

@@ -101,7 +101,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+										.editDisabled
 									: ""
 							}
 						/>
@@ -126,7 +126,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+										.editDisabled
 									: ""
 							}
 						/>
@@ -151,7 +151,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+										.editDisabled
 									: ""
 							}
 						>
@@ -358,6 +358,7 @@ export default class BrandBar extends React.Component {
 								>
 									<option value="en">English</option>
 									<option value="it">Italiano</option>
+									<option value="pt">Português</option>
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>
