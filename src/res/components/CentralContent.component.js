@@ -37,10 +37,21 @@ export default class CentralComponent extends React.Component {
 		if (this.props.twelveHours === "true") {
 			const ampm = hour >= 12 ? "PM" : "AM";
 			hour = hour > 12 ? this.updateTime(hour - 12) : this.updateTime(hour);
-			hourClock = hour + ":" + min + ":" + sec + " " + ampm;
+
+			if (this.props.secondsInClock === "true") {
+				hourClock = hour + ":" + min + ":" + sec + " " + ampm;
+			} else {
+				hourClock = hour + ":" + min + " " + ampm;
+			}
 		} else {
 			hour = this.updateTime(hour);
 			hourClock = hour + ":" + min + ":" + sec;
+
+			if (this.props.secondsInClock === "true") {
+				hourClock = hour + ":" + min + ":" + sec;
+			} else {
+				hourClock = hour + ":" + min;
+			}
 		}
 
 		switch (this.props.dateFormat) {

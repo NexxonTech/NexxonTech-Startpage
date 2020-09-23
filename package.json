@@ -1,6 +1,6 @@
 {
 	"name": "nexxontech-startpage",
-	"version": "2.0.9",
+	"version": "2.0.12",
 	"private": true,
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.30",

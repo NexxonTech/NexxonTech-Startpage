@@ -26,6 +26,7 @@ export default {
 		language: "en",
 		startpageTitle: "NexxonTech",
 		twelveHours: "false",
+		secondsInClock: "true",
 		dateFormat: "DMY",
 	},
 	unsplashApiUrl: "https://apis.nexxontech.it/unsplash-random.php",

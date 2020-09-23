@@ -64,6 +64,7 @@ class App extends React.Component {
 							lang={this.state.settings.language}
 							twelveHours={this.state.settings.twelveHours}
 							dateFormat={this.state.settings.dateFormat}
+							secondsInClock={this.state.settings.secondsInClock}
 						/>
 					</div>
 					<Toasts lang={this.state.settings.language} />

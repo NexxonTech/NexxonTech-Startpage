@@ -27,6 +27,7 @@ export default {
 		languages: "Lingua",
 		startpageTitle: "Titolo della Start Page",
 		twelveHours: "Formato dell'orologio",
+		secondsInClock: "Secondi nell'orologio",
 		dateFormat: "Formato della data",
 		recommended: "Consigliato",
 		save: "Salva",

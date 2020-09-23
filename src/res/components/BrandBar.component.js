@@ -384,6 +384,27 @@ export default class BrandBar extends React.Component {
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>
+									{locales[this.state.settings.language].settings.secondsInClock}
+								</Form.Label>
+								<Form.Control
+									value={this.state.settings.secondsInClock}
+									selectedvalue={this.state.settings.secondsInClocksecondsInClock}
+									onChange={(e) =>
+										this.setState({
+											settings: {
+												...this.state.settings,
+												secondsInClock: e.target.value,
+											},
+										})
+									}
+									as="select"
+								>
+									<option value="true">On</option>
+									<option value="false">Off</option>
+								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label>
 									{locales[this.state.settings.language].settings.dateFormat}
 								</Form.Label>
 								<Form.Control
