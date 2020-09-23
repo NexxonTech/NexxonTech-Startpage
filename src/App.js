@@ -2,27 +2,18 @@ import React from "react";
 import "./res/css/App.css";
 import axios from "axios";
 
-import locales from "./res/locale";
 import config from "./config/default";
 
-import Toast from "react-bootstrap/Toast";
 import Spinner from "react-bootstrap/Spinner";
 
 import BrandBar from "./res/components/BrandBar.component";
 import CentralContent from "./res/components/CentralContent.component";
+import Toasts from './res/components/Toasts.component'
 import Footer from "./res/components/Footer.component";
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-
-		var toastStatuses = { welcomeToast: true, cookieToast: true };
-		if (localStorage.getItem("toastStatuses")) {
-			toastStatuses = {
-				...toastStatuses,
-				...JSON.parse(localStorage.getItem("toastStatuses")),
-			};
-		}
 
 		var settings = config.settings;
 		if (localStorage.getItem("settings")) {
@@ -33,7 +24,6 @@ class App extends React.Component {
 		}
 
 		this.state = {
-			toastStatuses,
 			unsplashLoaded: false,
 			unsplashImageData: {},
 			settings,
@@ -76,100 +66,7 @@ class App extends React.Component {
 							dateFormat={this.state.settings.dateFormat}
 						/>
 					</div>
-					<div id="toastArea">
-						<Toast
-							show={this.state.toastStatuses.welcomeToast}
-							onClose={() => {
-								var newStatuses = {
-									...this.state.toastStatuses,
-									welcomeToast: false,
-								};
-								localStorage.setItem(
-									"toastStatuses",
-									JSON.stringify(newStatuses)
-								);
-								this.setState({ toastStatuses: newStatuses });
-							}}
-						>
-							<Toast.Header>
-								<div style={{ width: "100%" }}>
-									{locales[this.state.settings.language].toasts.welcome.title}
-									<img
-										src="holder.js/20x20?text=%20"
-										className="rounded mr-2"
-										alt=""
-										style={{ float: "right" }}
-									/>
-								</div>
-							</Toast.Header>
-							<Toast.Body>
-								<p>
-									{
-										locales[this.state.settings.language].toasts.welcome
-											.paragraphs[0]
-									}
-								</p>
-								<p>
-									{
-										locales[this.state.settings.language].toasts.welcome
-											.paragraphs[1]
-									}
-								</p>
-								<p style={{ marginBottom: 0 }}>
-									{
-										locales[this.state.settings.language].toasts.welcome
-											.paragraphs[2]
-									}
-								</p>
-							</Toast.Body>
-						</Toast>
-						<Toast
-							show={this.state.toastStatuses.cookieToast}
-							onClose={() => {
-								var newStatuses = {
-									...this.state.toastStatuses,
-									cookieToast: false,
-								};
-								localStorage.setItem(
-									"toastStatuses",
-									JSON.stringify(newStatuses)
-								);
-								this.setState({ toastStatuses: newStatuses });
-							}}
-						>
-							<Toast.Header>
-								<div style={{ width: "100%" }}>
-									{locales[this.state.settings.language].toasts.cookie.title}
-									<img
-										src="holder.js/20x20?text=%20"
-										className="rounded mr-2"
-										alt=""
-										style={{ float: "right" }}
-									/>
-								</div>
-							</Toast.Header>
-							<Toast.Body>
-								<p>
-									{
-										locales[this.state.settings.language].toasts.cookie
-											.paragraphs[0]
-									}
-								</p>
-								<p>
-									{
-										locales[this.state.settings.language].toasts.cookie
-											.paragraphs[1]
-									}
-								</p>
-								<p style={{ marginBottom: 0 }}>
-									{
-										locales[this.state.settings.language].toasts.cookie
-											.paragraphs[2]
-									}
-								</p>
-							</Toast.Body>
-						</Toast>
-					</div>
+					<Toasts lang={this.state.settings.language} />
 					<Footer
 						photoData={this.state.unsplashImageData}
 						lang={this.state.settings.language}
