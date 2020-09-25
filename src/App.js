@@ -8,7 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 import BrandBar from "./res/components/BrandBar.component";
 import CentralContent from "./res/components/CentralContent.component";
-import Toasts from './res/components/Toasts.component'
+import Toasts from "./res/components/Toasts.component";
 import Footer from "./res/components/Footer.component";
 
 class App extends React.Component {
@@ -35,6 +35,7 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
+		document.title = this.state.settings.startpageTitle + " StartPage";
 		axios.get(config.unsplashApiUrl).then((res) => {
 			this.setState({
 				unsplashLoaded: true,
