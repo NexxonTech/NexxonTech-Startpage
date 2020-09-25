@@ -26,6 +26,7 @@ export default {
 		searchEngine: "Motor de busca",
 		languages: "Língua",
 		twelveHours: "Formato de relógio",
+		secondsInClock: "Segundos no relógio",
 		dateFormat: "Formato de data",
 		startpageTitle: "Título da página",
 		recommended: "Recomendado",
