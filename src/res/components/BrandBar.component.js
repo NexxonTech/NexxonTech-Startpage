@@ -101,7 +101,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-										.editDisabled
+											.editDisabled
 									: ""
 							}
 						/>
@@ -126,7 +126,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-										.editDisabled
+											.editDisabled
 									: ""
 							}
 						/>
@@ -151,7 +151,7 @@ export default class BrandBar extends React.Component {
 							title={
 								disableBookmarkEdit
 									? locales[this.state.settings.language].bookmarksManagement
-										.editDisabled
+											.editDisabled
 									: ""
 							}
 						>
@@ -359,6 +359,7 @@ export default class BrandBar extends React.Component {
 									<option value="en">English</option>
 									<option value="it">Italiano</option>
 									<option value="pt">Português</option>
+									<option value="fr">Français</option>
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>
@@ -384,11 +385,16 @@ export default class BrandBar extends React.Component {
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>
-									{locales[this.state.settings.language].settings.secondsInClock}
+									{
+										locales[this.state.settings.language].settings
+											.secondsInClock
+									}
 								</Form.Label>
 								<Form.Control
 									value={this.state.settings.secondsInClock}
-									selectedvalue={this.state.settings.secondsInClocksecondsInClock}
+									selectedvalue={
+										this.state.settings.secondsInClocksecondsInClock
+									}
 									onChange={(e) =>
 										this.setState({
 											settings: {
