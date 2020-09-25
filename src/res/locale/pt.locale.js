@@ -18,7 +18,7 @@ export default {
 		new: "Novo",
 		bookmarkTitle: "Nome do marcador",
 		url: "URL do marcador",
-		editDisabled: "Edição bloqueada pelo hóspede desta Start Page",
+		editDisabled: "Edição bloqueada pelo hóspede desta página",
 		save: "Guardar",
 	},
 	settings: {
@@ -27,7 +27,7 @@ export default {
 		languages: "Língua",
 		twelveHours: "Formato de relógio",
 		dateFormat: "Formato de data",
-		startpageTitle: "Título da Start Page",
+		startpageTitle: "Título da página",
 		recommended: "Recomendado",
 		save: "Guardar",
 	},
@@ -48,7 +48,7 @@ export default {
 			title: "Aviso de cookies",
 			paragraphs: [
 				"Obrigado pelo seu interesse na NexxonTech Startpage.",
-				"Nós mostramos-lhe esta mensagem para lhe lembrar que esta aplicação utiliza cookies (localStorage API, para ser mais preciso) de modo a guardar as definições necessárias para o funcionamento do software.",
+				"Nós mostramos-lhe esta mensagem para lhe lembrar que esta aplicação utiliza cookies (API localStorage, para ser mais preciso) de modo a guardar as definições necessárias para o funcionamento do software.",
 				"Nenhuma intervenção sua é necessária.",
 			],
 		},
