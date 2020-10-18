@@ -2,6 +2,7 @@ import React from "react";
 import "./res/css/App.css";
 import axios from "axios";
 
+import { StartPageStore } from "./store.js";
 import config from "./config/default";
 
 import Spinner from "react-bootstrap/Spinner";
@@ -48,32 +49,40 @@ class App extends React.Component {
 		if (this.state.unsplashLoaded) {
 			const bgUrl = "url(" + this.state.unsplashImageData.urls.regular + ")";
 			return (
-				<div
-					className="App"
-					style={{
-						background: bgUrl,
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						height: "100%",
-						overflow: "auto",
-					}}
+				<StartPageStore.Provider
+					value={{ ...this.state, changeSettings: this.changeSettings }}
 				>
-					<div id="contentContainer" className="container-fluid">
-						<BrandBar changeSettings={this.changeSettings} />
+					<div
+						className="App"
+						style={{
+							background: bgUrl,
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+							height: "100%",
+							overflow: "auto",
+						}}
+					>
+						<div id="contentContainer" className="container-fluid">
+							{/* <BrandBar changeSettings={this.changeSettings} />
 						<CentralContent
 							engine={this.state.settings.searchEngine}
 							lang={this.state.settings.language}
 							twelveHours={this.state.settings.twelveHours}
 							dateFormat={this.state.settings.dateFormat}
 							secondsInClock={this.state.settings.secondsInClock}
-						/>
-					</div>
-					<Toasts lang={this.state.settings.language} />
+						/> */}
+							<BrandBar />
+							<CentralContent />
+						</div>
+						{/* <Toasts lang={this.state.settings.language} />
 					<Footer
 						photoData={this.state.unsplashImageData}
 						lang={this.state.settings.language}
-					/>
-				</div>
+					/> */}
+						<Toasts />
+						<Footer />
+					</div>
+				</StartPageStore.Provider>
 			);
 		} else {
 			return (

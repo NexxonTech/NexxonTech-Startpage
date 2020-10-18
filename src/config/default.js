@@ -28,6 +28,7 @@ export default {
 		},
 	],
 	settings: {
+		yourName: "",
 		searchEngine: "0",
 		language: "en",
 		startpageTitle: "NexxonTech",

@@ -9,7 +9,7 @@ export default {
 		photoBy: "Photo par",
 		on: "sur",
 	},
-	topRightMenu: {
+	sidebarBottom: {
 		manageBookmarks: "Gérer les favoris",
 		settings: "Réglages",
 	},
@@ -23,6 +23,7 @@ export default {
 	},
 	settings: {
 		title: "Réglages",
+		yourName: "Votre nom",
 		searchEngine: "Moteur de recherche",
 		languages: "Langue",
 		twelveHours: "Format de l'horloge",
@@ -35,6 +36,10 @@ export default {
 	quickNotes: {
 		title: "Notes rapides",
 		save: "Enregistrer",
+	},
+	greetings: {
+		withName: "Bonjour,",
+		withoutName: "Bienvenue",
 	},
 	toasts: {
 		welcome: {

@@ -9,7 +9,7 @@ export default {
 		photoBy: "Foto di",
 		on: "su",
 	},
-	topRightMenu: {
+	sidebarBottom: {
 		manageBookmarks: "Gestione segnalibri",
 		settings: "Impostazioni",
 	},
@@ -23,6 +23,7 @@ export default {
 	},
 	settings: {
 		title: "Impostazioni",
+		yourName: "Il tuo nome",
 		searchEngine: "Motore di ricerca",
 		languages: "Lingua",
 		startpageTitle: "Titolo della pagina",
@@ -35,6 +36,10 @@ export default {
 	quickNotes: {
 		title: "Note rapide",
 		save: "Salva",
+	},
+	greetings: {
+		withName: "Ciao,",
+		withoutName: "Benvenuto",
 	},
 	toasts: {
 		welcome: {

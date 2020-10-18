@@ -9,7 +9,7 @@ export default {
 		photoBy: "Fotografia de",
 		on: "em",
 	},
-	topRightMenu: {
+	sidebarBottom: {
 		manageBookmarks: "Gerir marcadores",
 		settings: "Definições",
 	},
@@ -23,6 +23,7 @@ export default {
 	},
 	settings: {
 		title: "Definições",
+		yourName: "O seu nome",
 		searchEngine: "Motor de busca",
 		languages: "Língua",
 		twelveHours: "Formato de relógio",
@@ -35,6 +36,10 @@ export default {
 	quickNotes: {
 		title: "Notas rápidas",
 		save: "Guardar",
+	},
+	greetings: {
+		withName: "Olá,",
+		withoutName: "Bem-vindo",
 	},
 	toasts: {
 		welcome: {

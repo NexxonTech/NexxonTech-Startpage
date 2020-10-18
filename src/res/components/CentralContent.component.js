@@ -6,9 +6,12 @@ import {
 	faCalculator,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { StartPageStore } from "../../store.js";
 import locales from "../locale";
 
 export default class CentralComponent extends React.Component {
+	static contextType = StartPageStore;
+
 	constructor(props) {
 		super(props);
 
@@ -34,11 +37,11 @@ export default class CentralComponent extends React.Component {
 		const month = this.updateTime(date.getMonth() + 1);
 		const year = date.getFullYear();
 
-		if (this.props.twelveHours === "true") {
+		if (this.context.settings.twelveHours === "true") {
 			const ampm = hour >= 12 ? "PM" : "AM";
 			hour = hour > 12 ? this.updateTime(hour - 12) : this.updateTime(hour);
 
-			if (this.props.secondsInClock === "true") {
+			if (this.context.settings.secondsInClock === "true") {
 				hourClock = hour + ":" + min + ":" + sec + " " + ampm;
 			} else {
 				hourClock = hour + ":" + min + " " + ampm;
@@ -47,14 +50,14 @@ export default class CentralComponent extends React.Component {
 			hour = this.updateTime(hour);
 			hourClock = hour + ":" + min + ":" + sec;
 
-			if (this.props.secondsInClock === "true") {
+			if (this.context.settings.secondsInClock === "true") {
 				hourClock = hour + ":" + min + ":" + sec;
 			} else {
 				hourClock = hour + ":" + min;
 			}
 		}
 
-		switch (this.props.dateFormat) {
+		switch (this.context.settings.dateFormat) {
 			case "DMY":
 				dateClock = day + "/" + month + "/" + year;
 				break;
@@ -88,7 +91,7 @@ export default class CentralComponent extends React.Component {
 			if (this.state.searchStatus) {
 				const userSearchEncoded = encodeURIComponent(this.state.userSearch);
 				if (this.state.searchFunction === 0) {
-					if (this.props.engine === "0") {
+					if (this.context.settings.engine === "0") {
 						const ddgurl = "https://duckduckgo.com/?t=nexxontech_Startpage&q=";
 						window.location = ddgurl + userSearchEncoded;
 					} else {
@@ -148,19 +151,22 @@ export default class CentralComponent extends React.Component {
 		var icon = null;
 		if (this.state.searchStatus) {
 			if (this.state.searchFunction === 0) {
-				if (this.props.engine === "0") {
-					placeholder = locales[this.props.lang].searchWith.duckduckgo;
+				if (this.context.settings.engine === "0") {
+					placeholder =
+						locales[this.context.settings.language].searchWith.duckduckgo;
 					icon = faSearch;
 				} else {
-					placeholder = locales[this.props.lang].searchWith.google;
+					placeholder =
+						locales[this.context.settings.language].searchWith.google;
 					icon = faSearch;
 				}
 			} else if (this.state.searchFunction === 1) {
-				placeholder = locales[this.props.lang].searchWith.wolfram;
+				placeholder =
+					locales[this.context.settings.language].searchWith.wolfram;
 				icon = faCalculator;
 			}
 		} else {
-			placeholder = locales[this.props.lang].searchWith.url;
+			placeholder = locales[this.context.settings.language].searchWith.url;
 			icon = faArrowCircleRight;
 		}
 

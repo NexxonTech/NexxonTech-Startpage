@@ -9,7 +9,7 @@ export default {
 		photoBy: "Photo by",
 		on: "on",
 	},
-	topRightMenu: {
+	sidebarBottom: {
 		manageBookmarks: "Manage bookmarks",
 		settings: "Settings",
 	},
@@ -23,6 +23,7 @@ export default {
 	},
 	settings: {
 		title: "Settings",
+		yourName: "Your name",
 		searchEngine: "Search engine",
 		languages: "Language",
 		twelveHours: "Clock format",
@@ -35,6 +36,10 @@ export default {
 	quickNotes: {
 		title: "Quick notes",
 		save: "Save",
+	},
+	greetings: {
+		withName: "Howdy,",
+		withoutName: "Welcome",
 	},
 	toasts: {
 		welcome: {

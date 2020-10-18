@@ -1,119 +1,119 @@
-import React from 'react'
+import React from "react";
 
+import { StartPageStore } from "../../store.js";
 import locales from "../locale";
 
-import Toast from 'react-bootstrap/Toast'
+import Toast from "react-bootstrap/Toast";
 
 export default class Toasts extends React.Component {
-    constructor(props) {
-        super(props)
+	static contextType = StartPageStore;
 
-        var toastStatuses = { welcomeToast: true, cookieToast: true };
-        if (localStorage.getItem("toastStatuses")) {
-            toastStatuses = {
-                ...toastStatuses,
-                ...JSON.parse(localStorage.getItem("toastStatuses")),
-            };
-        }
+	constructor(props) {
+		super(props);
 
-        this.state = {
-            toastStatuses
-        }
-    }
-    render() {
-        return (<div id="toastArea">
-            <Toast
-                show={this.state.toastStatuses.welcomeToast}
-                onClose={() => {
-                    var newStatuses = {
-                        ...this.state.toastStatuses,
-                        welcomeToast: false,
-                    };
-                    localStorage.setItem(
-                        "toastStatuses",
-                        JSON.stringify(newStatuses)
-                    );
-                    this.setState({ toastStatuses: newStatuses });
-                }}
-            >
-                <Toast.Header>
-                    <div style={{ width: "100%" }}>
-                        {locales[this.props.lang].toasts.welcome.title}
-                        <img
-                            src="holder.js/20x20?text=%20"
-                            className="rounded mr-2"
-                            alt=""
-                            style={{ float: "right" }}
-                        />
-                    </div>
-                </Toast.Header>
-                <Toast.Body>
-                    <p>
-                        {
-                            locales[this.props.lang].toasts.welcome
-                                .paragraphs[0]
-                        }
-                    </p>
-                    <p>
-                        {
-                            locales[this.props.lang].toasts.welcome
-                                .paragraphs[1]
-                        }
-                    </p>
-                    <p style={{ marginBottom: 0 }}>
-                        {
-                            locales[this.props.lang].toasts.welcome
-                                .paragraphs[2]
-                        }
-                    </p>
-                </Toast.Body>
-            </Toast>
-            <Toast
-                show={this.state.toastStatuses.cookieToast}
-                onClose={() => {
-                    var newStatuses = {
-                        ...this.state.toastStatuses,
-                        cookieToast: false,
-                    };
-                    localStorage.setItem(
-                        "toastStatuses",
-                        JSON.stringify(newStatuses)
-                    );
-                    this.setState({ toastStatuses: newStatuses });
-                }}
-            >
-                <Toast.Header>
-                    <div style={{ width: "100%" }}>
-                        {locales[this.props.lang].toasts.cookie.title}
-                        <img
-                            src="holder.js/20x20?text=%20"
-                            className="rounded mr-2"
-                            alt=""
-                            style={{ float: "right" }}
-                        />
-                    </div>
-                </Toast.Header>
-                <Toast.Body>
-                    <p>
-                        {
-                            locales[this.props.lang].toasts.cookie
-                                .paragraphs[0]
-                        }
-                    </p>
-                    <p>
-                        {
-                            locales[this.props.lang].toasts.cookie
-                                .paragraphs[1]
-                        }
-                    </p>
-                    <p style={{ marginBottom: 0 }}>
-                        {
-                            locales[this.props.lang].toasts.cookie
-                                .paragraphs[2]
-                        }
-                    </p>
-                </Toast.Body>
-            </Toast>
-        </div>)
-    }
+		var toastStatuses = { welcomeToast: true, cookieToast: true };
+		if (localStorage.getItem("toastStatuses")) {
+			toastStatuses = {
+				...toastStatuses,
+				...JSON.parse(localStorage.getItem("toastStatuses")),
+			};
+		}
+
+		this.state = {
+			toastStatuses,
+		};
+	}
+	render() {
+		console.log(this.context.settings.language);
+		return (
+			<div id="toastArea">
+				<Toast
+					show={this.state.toastStatuses.welcomeToast}
+					onClose={() => {
+						var newStatuses = {
+							...this.state.toastStatuses,
+							welcomeToast: false,
+						};
+						localStorage.setItem("toastStatuses", JSON.stringify(newStatuses));
+						this.setState({ toastStatuses: newStatuses });
+					}}
+				>
+					<Toast.Header>
+						<div style={{ width: "100%" }}>
+							{locales[this.context.settings.language].toasts.welcome.title}
+							<img
+								src="holder.js/20x20?text=%20"
+								className="rounded mr-2"
+								alt=""
+								style={{ float: "right" }}
+							/>
+						</div>
+					</Toast.Header>
+					<Toast.Body>
+						<p>
+							{
+								locales[this.context.settings.language].toasts.welcome
+									.paragraphs[0]
+							}
+						</p>
+						<p>
+							{
+								locales[this.context.settings.language].toasts.welcome
+									.paragraphs[1]
+							}
+						</p>
+						<p style={{ marginBottom: 0 }}>
+							{
+								locales[this.context.settings.language].toasts.welcome
+									.paragraphs[2]
+							}
+						</p>
+					</Toast.Body>
+				</Toast>
+				<Toast
+					show={this.state.toastStatuses.cookieToast}
+					onClose={() => {
+						var newStatuses = {
+							...this.state.toastStatuses,
+							cookieToast: false,
+						};
+						localStorage.setItem("toastStatuses", JSON.stringify(newStatuses));
+						this.setState({ toastStatuses: newStatuses });
+					}}
+				>
+					<Toast.Header>
+						<div style={{ width: "100%" }}>
+							{locales[this.context.settings.language].toasts.cookie.title}
+							<img
+								src="holder.js/20x20?text=%20"
+								className="rounded mr-2"
+								alt=""
+								style={{ float: "right" }}
+							/>
+						</div>
+					</Toast.Header>
+					<Toast.Body>
+						<p>
+							{
+								locales[this.context.settings.language].toasts.cookie
+									.paragraphs[0]
+							}
+						</p>
+						<p>
+							{
+								locales[this.context.settings.language].toasts.cookie
+									.paragraphs[1]
+							}
+						</p>
+						<p style={{ marginBottom: 0 }}>
+							{
+								locales[this.context.settings.language].toasts.cookie
+									.paragraphs[2]
+							}
+						</p>
+					</Toast.Body>
+				</Toast>
+			</div>
+		);
+	}
 }
