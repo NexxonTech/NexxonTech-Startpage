@@ -91,7 +91,7 @@ export default class CentralComponent extends React.Component {
 			if (this.state.searchStatus) {
 				const userSearchEncoded = encodeURIComponent(this.state.userSearch);
 				if (this.state.searchFunction === 0) {
-					if (this.context.settings.engine === "0") {
+					if (this.context.settings.searchEngine === "0") {
 						const ddgurl = "https://duckduckgo.com/?t=nexxontech_Startpage&q=";
 						window.location = ddgurl + userSearchEncoded;
 					} else {
@@ -151,7 +151,7 @@ export default class CentralComponent extends React.Component {
 		var icon = null;
 		if (this.state.searchStatus) {
 			if (this.state.searchFunction === 0) {
-				if (this.context.settings.engine === "0") {
+				if (this.context.settings.searchEngine === "0") {
 					placeholder =
 						locales[this.context.settings.language].searchWith.duckduckgo;
 					icon = faSearch;
