@@ -10,14 +10,20 @@ export default {
 		},
 		{
 			key: uuidv4(),
+			title: "Wikipedia",
+			url: "http://www.wikipedia.org",
+			locked: "false",
+		},
+		{
+			key: uuidv4(),
 			title: "NexxonTech",
 			url: "http://www.nexxontech.it",
 			locked: "false",
 		},
 		{
 			key: uuidv4(),
-			title: "Wikipedia",
-			url: "http://www.wikipedia.org",
+			title: "GitHub Repo",
+			url: "https://github.com/NexxonTech/NexxonTech-Startpage/",
 			locked: "false",
 		},
 	],

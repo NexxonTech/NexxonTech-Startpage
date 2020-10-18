@@ -2,18 +2,17 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBars,
-	faCogs,
 	faPlusCircle,
 	faTrash,
-	faBookmark,
 	faStickyNote,
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 
+import Sidebar from "./Sidebar.component";
+
 import locales from "../locale";
 import config from "../../config/default";
 
-import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -45,26 +44,13 @@ export default class BrandBar extends React.Component {
 			bookmarks,
 			modalShow: false,
 			settingsShow: false,
+			showSidebar: false,
 			settings,
 			quickNote,
 		};
 	}
 
 	render() {
-		var bookmarksList = [];
-		bookmarksList = this.state.bookmarks.map((bookmark) => {
-			return (
-				<Dropdown.Item key={bookmark.key} href={bookmark.url}>
-					<img
-						src={"https://www.google.com/s2/favicons?domain=" + bookmark.url}
-						alt=""
-					/>
-					&nbsp;
-					{bookmark.title}
-				</Dropdown.Item>
-			);
-		});
-
 		var formRows = [];
 		formRows = this.state.bookmarks.map((bookmark, index) => {
 			var disableBookmarkEdit = false;
@@ -170,7 +156,7 @@ export default class BrandBar extends React.Component {
 						<span style={{ fontSize: "15px" }}>StartPage</span>
 					</sup>
 				</h1>
-				<Dropdown id="menuPreferiti">
+				{/* <Dropdown id="menuPreferiti">
 					<Dropdown.Toggle
 						style={{
 							padding: 0,
@@ -197,7 +183,20 @@ export default class BrandBar extends React.Component {
 							{locales[this.state.settings.language].settings.title}
 						</Dropdown.Item>
 					</Dropdown.Menu>
-				</Dropdown>
+				</Dropdown> */}
+				<Button
+					onClick={() => this.setState({ showSidebar: true })}
+					style={{
+						padding: 0,
+						border: "none",
+						background: "none",
+						margin: "10px",
+						color: "white",
+						float: "right",
+					}}
+				>
+					<FontAwesomeIcon icon={faBars} />
+				</Button>
 				<Button
 					id="buttonNote"
 					onClick={() => this.setState({ quickNoteShow: true })}
@@ -469,6 +468,10 @@ export default class BrandBar extends React.Component {
 						</Button>
 					</Modal.Footer>
 				</Modal>
+				<Sidebar
+					show={this.state.showSidebar}
+					onClose={() => this.setState({ showSidebar: false })}
+				/>
 			</div>
 		);
 	}
