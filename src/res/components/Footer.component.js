@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { StartPageStore } from "../../store.js";
-import locales from "../locale";
+import getString from "../locale/getString";
 
 export default class Footer extends React.Component {
 	static contextType = StartPageStore;
@@ -14,7 +14,7 @@ export default class Footer extends React.Component {
 		return (
 			<div id="footer">
 				<p id="credit">
-					{locales[this.context.settings.language].footer.photoBy + " "}
+					{getString(this.context.settings.language, "footer", "photoBy") + " "}
 					<a
 						href={
 							photoData.user.links.html +
@@ -23,7 +23,7 @@ export default class Footer extends React.Component {
 					>
 						{photoData.user.name}
 					</a>{" "}
-					{locales[this.context.settings.language].footer.on + " "}
+					{getString(this.context.settings.language, "footer", "on") + " "}
 					<a href="https://unsplash.com/?utm_source=nexxontech_startPage&utm_medium=referral">
 						Unsplash
 					</a>

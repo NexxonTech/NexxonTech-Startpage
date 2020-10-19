@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import bookmarkIllustration from "../img/bookmark.png";
 
-import locales from "../locale";
+import getString from "../locale/getString";
 import config from "../../config/default";
 import { StartPageStore } from "../../store.js";
 
@@ -71,10 +71,11 @@ export default class Sidebar extends React.Component {
 				>
 					<Col xs={4} style={{ paddingRight: "5px" }}>
 						<Form.Label>
-							{
-								locales[this.state.settings.language].bookmarksManagement
-									.bookmarkTitle
-							}
+							{getString(
+								this.state.settings.language,
+								"bookmarksManagement",
+								"bookmarkTitle"
+							)}
 						</Form.Label>
 						<Form.Control
 							value={bookmark.title}
@@ -85,22 +86,30 @@ export default class Sidebar extends React.Component {
 									this.setState({ bookmarks: newBookmarks });
 								}
 							}}
-							placeholder={
-								locales[this.state.settings.language].bookmarksManagement
-									.bookmarkTitle
-							}
+							placeholder={getString(
+								this.state.settings.language,
+								"bookmarksManagement",
+								"bookmarkTitle"
+							)}
 							disabled={disableBookmarkEdit}
 							title={
 								disableBookmarkEdit
-									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+									? getString(
+											this.state.settings.language,
+											"bookmarksManagement",
+											"editDisabled"
+									  )
 									: ""
 							}
 						/>
 					</Col>
 					<Col xs={7} style={{ paddingLeft: "5px" }}>
 						<Form.Label>
-							{locales[this.state.settings.language].bookmarksManagement.url}
+							{getString(
+								this.state.settings.language,
+								"bookmarksManagement",
+								"url"
+							)}
 						</Form.Label>
 						<Form.Control
 							value={bookmark.url}
@@ -111,14 +120,19 @@ export default class Sidebar extends React.Component {
 									this.setState({ bookmarks: newBookmarks });
 								}
 							}}
-							placeholder={
-								locales[this.state.settings.language].bookmarksManagement.url
-							}
+							placeholder={getString(
+								this.state.settings.language,
+								"bookmarksManagement",
+								"url"
+							)}
 							disabled={disableBookmarkEdit}
 							title={
 								disableBookmarkEdit
-									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+									? getString(
+											this.state.settings.language,
+											"bookmarksManagement",
+											"editDisabled"
+									  )
 									: ""
 							}
 						/>
@@ -142,8 +156,11 @@ export default class Sidebar extends React.Component {
 							disabled={disableBookmarkEdit}
 							title={
 								disableBookmarkEdit
-									? locales[this.state.settings.language].bookmarksManagement
-											.editDisabled
+									? getString(
+											this.state.settings.language,
+											"bookmarksManagement",
+											"editDisabled"
+									  )
 									: ""
 							}
 						>
@@ -157,12 +174,12 @@ export default class Sidebar extends React.Component {
 		const sidebarTitle =
 			this.state.settings.yourName !== "" ? (
 				<span>
-					{locales[this.state.settings.language].greetings.withName}{" "}
+					{getString(this.state.settings.language, "greetings", "withName")}{" "}
 					{this.state.settings.yourName}!
 				</span>
 			) : (
 				<span>
-					{locales[this.state.settings.language].greetings.withoutName}!
+					{getString(this.state.settings.language, "greetings", "withoutName")}!
 				</span>
 			);
 
@@ -201,10 +218,11 @@ export default class Sidebar extends React.Component {
 							>
 								<FontAwesomeIcon icon={faBookmark} />
 								&nbsp;{" "}
-								{
-									locales[this.state.settings.language].sidebarBottom
-										.manageBookmarks
-								}
+								{getString(
+									this.state.settings.language,
+									"sidebarBottom",
+									"manageBookmarks"
+								)}
 							</ListGroup.Item>
 							<ListGroup.Item
 								variant="secondary"
@@ -213,7 +231,11 @@ export default class Sidebar extends React.Component {
 							>
 								<FontAwesomeIcon icon={faCogs} />
 								&nbsp;{" "}
-								{locales[this.state.settings.language].sidebarBottom.settings}
+								{getString(
+									this.state.settings.language,
+									"sidebarBottom",
+									"settings"
+								)}
 							</ListGroup.Item>
 						</ListGroup>
 					</div>
@@ -224,10 +246,11 @@ export default class Sidebar extends React.Component {
 					>
 						<Modal.Header closeButton>
 							<Modal.Title>
-								{
-									locales[this.state.settings.language].bookmarksManagement
-										.title
-								}
+								{getString(
+									this.state.settings.language,
+									"bookmarksManagement",
+									"title"
+								)}
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
@@ -251,7 +274,11 @@ export default class Sidebar extends React.Component {
 							>
 								<FontAwesomeIcon icon={faPlusCircle} />
 								&nbsp;
-								{locales[this.state.settings.language].bookmarksManagement.new}
+								{getString(
+									this.state.settings.language,
+									"bookmarksManagement",
+									"new"
+								)}
 							</Button>
 							<Form>{formRows}</Form>
 						</Modal.Body>
@@ -266,7 +293,11 @@ export default class Sidebar extends React.Component {
 									this.setState({ modalShow: false });
 								}}
 							>
-								{locales[this.state.settings.language].bookmarksManagement.save}
+								{getString(
+									this.state.settings.language,
+									"bookmarksManagement",
+									"save"
+								)}
 							</Button>
 						</Modal.Footer>
 					</Modal>
@@ -276,7 +307,7 @@ export default class Sidebar extends React.Component {
 					>
 						<Modal.Header closeButton>
 							<Modal.Title>
-								{locales[this.state.settings.language].settings.title}
+								{getString(this.state.settings.language, "settings", "title")}
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
@@ -288,7 +319,11 @@ export default class Sidebar extends React.Component {
 							>
 								<Form.Group>
 									<Form.Label>
-										{locales[this.state.settings.language].settings.yourName}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"yourName"
+										)}
 									</Form.Label>
 									<Form.Control
 										type="text"
@@ -305,10 +340,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{
-											locales[this.state.settings.language].settings
-												.searchEngine
-										}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"searchEngine"
+										)}
 									</Form.Label>
 									<Form.Control
 										value={this.state.settings.searchEngine}
@@ -325,10 +361,11 @@ export default class Sidebar extends React.Component {
 									>
 										<option value="0">
 											DuckDuckGo (
-											{
-												locales[this.state.settings.language].settings
-													.recommended
-											}
+											{getString(
+												this.state.settings.language,
+												"settings",
+												"recommended"
+											)}
 											)
 										</option>
 										<option value="1">Google</option>
@@ -336,7 +373,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{locales[this.state.settings.language].settings.languages}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"languages"
+										)}
 									</Form.Label>
 									<Form.Control
 										value={this.state.settings.language}
@@ -359,7 +400,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{locales[this.state.settings.language].settings.twelveHours}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"twelveHours"
+										)}
 									</Form.Label>
 									<Form.Control
 										value={this.state.settings.twelveHours}
@@ -380,10 +425,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{
-											locales[this.state.settings.language].settings
-												.secondsInClock
-										}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"secondsInClock"
+										)}
 									</Form.Label>
 									<Form.Control
 										value={this.state.settings.secondsInClock}
@@ -406,7 +452,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{locales[this.state.settings.language].settings.dateFormat}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"dateFormat"
+										)}
 									</Form.Label>
 									<Form.Control
 										value={this.state.settings.dateFormat}
@@ -428,10 +478,11 @@ export default class Sidebar extends React.Component {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label>
-										{
-											locales[this.state.settings.language].settings
-												.startpageTitle
-										}
+										{getString(
+											this.state.settings.language,
+											"settings",
+											"startpageTitle"
+										)}
 									</Form.Label>
 									<Form.Control
 										type="text"
@@ -460,7 +511,7 @@ export default class Sidebar extends React.Component {
 									this.setState({ settingsShow: false });
 								}}
 							>
-								{locales[this.state.settings.language].settings.save}
+								{getString(this.state.settings.language, "settings", "save")}
 							</Button>
 						</Modal.Footer>
 					</Modal>

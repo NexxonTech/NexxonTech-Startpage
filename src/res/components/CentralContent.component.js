@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { StartPageStore } from "../../store.js";
-import locales from "../locale";
+import getString from "../locale/getString";
 
 export default class CentralComponent extends React.Component {
 	static contextType = StartPageStore;
@@ -152,21 +152,34 @@ export default class CentralComponent extends React.Component {
 		if (this.state.searchStatus) {
 			if (this.state.searchFunction === 0) {
 				if (this.context.settings.searchEngine === "0") {
-					placeholder =
-						locales[this.context.settings.language].searchWith.duckduckgo;
+					placeholder = getString(
+						this.context.settings.language,
+						"searchWith",
+						"duckduckgo"
+					);
 					icon = faSearch;
 				} else {
-					placeholder =
-						locales[this.context.settings.language].searchWith.google;
+					placeholder = getString(
+						this.context.settings.language,
+						"searchWith",
+						"google"
+					);
 					icon = faSearch;
 				}
 			} else if (this.state.searchFunction === 1) {
-				placeholder =
-					locales[this.context.settings.language].searchWith.wolfram;
+				placeholder = getString(
+					this.context.settings.language,
+					"searchWith",
+					"wolfram"
+				);
 				icon = faCalculator;
 			}
 		} else {
-			placeholder = locales[this.context.settings.language].searchWith.url;
+			placeholder = getString(
+				this.context.settings.language,
+				"searchWith",
+				"url"
+			);
 			icon = faArrowCircleRight;
 		}
 

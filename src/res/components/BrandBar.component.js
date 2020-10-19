@@ -6,7 +6,7 @@ import { StartPageStore } from "../../store.js";
 
 import Sidebar from "./Sidebar.component";
 
-import locales from "../locale";
+import getString from "../locale/getString";
 
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -72,7 +72,7 @@ export default class BrandBar extends React.Component {
 				>
 					<Modal.Header closeButton>
 						<Modal.Title>
-							{locales[this.context.settings.language].quickNotes.title}
+							{getString(this.context.settings.language, "quickNotes", "title")}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
@@ -98,7 +98,7 @@ export default class BrandBar extends React.Component {
 								this.setState({ quickNoteShow: false });
 							}}
 						>
-							{locales[this.context.settings.language].quickNotes.save}
+							{getString(this.context.settings.language, "quickNotes", "save")}
 						</Button>
 					</Modal.Footer>
 				</Modal>

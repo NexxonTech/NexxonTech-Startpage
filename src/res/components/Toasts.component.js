@@ -1,7 +1,7 @@
 import React from "react";
 
 import { StartPageStore } from "../../store.js";
-import locales from "../locale";
+import getString from "../locale/getString";
 
 import Toast from "react-bootstrap/Toast";
 
@@ -40,7 +40,10 @@ export default class Toasts extends React.Component {
 				>
 					<Toast.Header>
 						<div style={{ width: "100%" }}>
-							{locales[this.context.settings.language].toasts.welcome.title}
+							{
+								getString(this.context.settings.language, "toasts", "welcome")
+									.title
+							}
 							<img
 								src="holder.js/20x20?text=%20"
 								className="rounded mr-2"
@@ -52,19 +55,19 @@ export default class Toasts extends React.Component {
 					<Toast.Body>
 						<p>
 							{
-								locales[this.context.settings.language].toasts.welcome
+								getString(this.context.settings.language, "toasts", "welcome")
 									.paragraphs[0]
 							}
 						</p>
 						<p>
 							{
-								locales[this.context.settings.language].toasts.welcome
+								getString(this.context.settings.language, "toasts", "welcome")
 									.paragraphs[1]
 							}
 						</p>
 						<p style={{ marginBottom: 0 }}>
 							{
-								locales[this.context.settings.language].toasts.welcome
+								getString(this.context.settings.language, "toasts", "welcome")
 									.paragraphs[2]
 							}
 						</p>
@@ -83,7 +86,10 @@ export default class Toasts extends React.Component {
 				>
 					<Toast.Header>
 						<div style={{ width: "100%" }}>
-							{locales[this.context.settings.language].toasts.cookie.title}
+							{
+								getString(this.context.settings.language, "toasts", "cookie")
+									.title
+							}
 							<img
 								src="holder.js/20x20?text=%20"
 								className="rounded mr-2"
@@ -95,19 +101,19 @@ export default class Toasts extends React.Component {
 					<Toast.Body>
 						<p>
 							{
-								locales[this.context.settings.language].toasts.cookie
+								getString(this.context.settings.language, "toasts", "cookie")
 									.paragraphs[0]
 							}
 						</p>
 						<p>
 							{
-								locales[this.context.settings.language].toasts.cookie
+								getString(this.context.settings.language, "toasts", "cookie")
 									.paragraphs[1]
 							}
 						</p>
 						<p style={{ marginBottom: 0 }}>
 							{
-								locales[this.context.settings.language].toasts.cookie
+								getString(this.context.settings.language, "toasts", "cookie")
 									.paragraphs[2]
 							}
 						</p>
