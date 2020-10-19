@@ -1,5 +1,6 @@
 # NexxonTech Startpage
 
+![Version](https://img.shields.io/github/package-json/v/NexxonTech/NexxonTech-Startpage?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/nexxontech/nexxontech-startpage?style=flat-square)
 [![BMAC](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square)](https://www.buymeacoffee.com/Occhioverde03)
 
