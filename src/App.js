@@ -24,15 +24,28 @@ class App extends React.Component {
 			};
 		}
 
+		var quickNote = {
+			text: "",
+			reminder: "false",
+		};
+		if (localStorage.getItem("quickNoteData")) {
+			quickNote = JSON.parse(localStorage.getItem("quickNoteData"));
+		}
+
 		this.state = {
 			unsplashLoaded: false,
 			unsplashImageData: {},
 			settings,
+			quickNote,
 		};
 	}
 
 	changeSettings = (settings) => {
 		this.setState({ settings });
+	};
+
+	changeNote = (quickNote) => {
+		this.setState({ quickNote });
 	};
 
 	componentDidMount() {
@@ -50,7 +63,11 @@ class App extends React.Component {
 			const bgUrl = "url(" + this.state.unsplashImageData.urls.regular + ")";
 			return (
 				<StartPageStore.Provider
-					value={{ ...this.state, changeSettings: this.changeSettings }}
+					value={{
+						...this.state,
+						changeSettings: this.changeSettings,
+						changeNote: this.changeNote,
+					}}
 				>
 					<div
 						className="App"

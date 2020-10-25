@@ -35,6 +35,8 @@ export default {
 	},
 	quickNotes: {
 		title: "Note rapide",
+		reminderCheckBox: "Ricordamelo quando apro la StartPage",
+		reminderToastTitle: "Promemoria!",
 		save: "Salva",
 	},
 	greetings: {

@@ -18,10 +18,8 @@ export default class BrandBar extends React.Component {
 	constructor(props, context) {
 		super(props);
 
-		var quickNote = "";
-		if (localStorage.getItem("quickNote")) {
-			quickNote = localStorage.getItem("quickNote");
-		}
+		var quickNote = { ...context.quickNote };
+		quickNote.reminder = quickNote.reminder === "true" ? true : false;
 
 		this.state = {
 			showSidebar: false,
@@ -80,12 +78,35 @@ export default class BrandBar extends React.Component {
 							<Form.Group>
 								<Form.Control
 									as="textarea"
-									value={this.state.quickNote}
+									value={this.state.quickNote.text}
 									onChange={(e) => {
 										this.setState({
-											quickNote: e.target.value,
+											quickNote: {
+												...this.state.quickNote,
+												text: e.target.value,
+											},
 										});
 									}}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Check
+									type="switch"
+									id="custom-switch"
+									onChange={(e) => {
+										this.setState({
+											quickNote: {
+												...this.state.quickNote,
+												reminder: e.target.checked,
+											},
+										});
+									}}
+									checked={this.state.quickNote.reminder}
+									label={getString(
+										this.context.settings.language,
+										"quickNotes",
+										"reminderCheckBox"
+									)}
 								/>
 							</Form.Group>
 						</Form>
@@ -94,7 +115,13 @@ export default class BrandBar extends React.Component {
 						<Button
 							variant="primary"
 							onClick={() => {
-								localStorage.setItem("quickNote", this.state.quickNote);
+								var quickNote = { ...this.state.quickNote };
+								quickNote.reminder = quickNote.reminder ? "true" : "false";
+								localStorage.setItem(
+									"quickNoteData",
+									JSON.stringify(quickNote)
+								);
+								this.context.changeNote(quickNote);
 								this.setState({ quickNoteShow: false });
 							}}
 						>

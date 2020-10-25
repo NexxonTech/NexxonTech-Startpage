@@ -8,16 +8,23 @@ import Toast from "react-bootstrap/Toast";
 export default class Toasts extends React.Component {
 	static contextType = StartPageStore;
 
-	constructor(props) {
+	constructor(props, context) {
 		super(props);
 
-		var toastStatuses = { welcomeToast: true, cookieToast: true };
+		var toastStatuses = {
+			welcomeToast: true,
+			cookieToast: true,
+			reminderToast: false,
+		};
 		if (localStorage.getItem("toastStatuses")) {
 			toastStatuses = {
 				...toastStatuses,
 				...JSON.parse(localStorage.getItem("toastStatuses")),
 			};
 		}
+
+		toastStatuses.reminderToast =
+			context.quickNote.reminder === "true" ? true : false;
 
 		this.state = {
 			toastStatuses,
@@ -117,6 +124,35 @@ export default class Toasts extends React.Component {
 									.paragraphs[2]
 							}
 						</p>
+					</Toast.Body>
+				</Toast>
+				<Toast
+					show={this.state.toastStatuses.reminderToast}
+					onClose={() => {
+						var newStatuses = {
+							...this.state.toastStatuses,
+							reminderToast: false,
+						};
+						this.setState({ toastStatuses: newStatuses });
+					}}
+				>
+					<Toast.Header className="bg-warning text-dark">
+						<div style={{ width: "100%" }}>
+							{getString(
+								this.context.settings.language,
+								"quickNotes",
+								"reminderToastTitle"
+							)}
+							<img
+								src="holder.js/20x20?text=%20"
+								className="rounded mr-2"
+								alt=""
+								style={{ float: "right" }}
+							/>
+						</div>
+					</Toast.Header>
+					<Toast.Body>
+						<p className="mb-0">{this.context.quickNote.text}</p>
 					</Toast.Body>
 				</Toast>
 			</div>
