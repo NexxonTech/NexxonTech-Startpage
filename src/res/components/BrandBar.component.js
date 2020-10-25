@@ -101,7 +101,11 @@ export default class BrandBar extends React.Component {
 											},
 										});
 									}}
-									checked={this.state.quickNote.reminder}
+									checked={
+										this.state.quickNote.text !== "" &&
+										this.state.quickNote.reminder
+									}
+									disabled={this.state.quickNote.text === ""}
 									label={getString(
 										this.context.settings.language,
 										"quickNotes",
@@ -116,7 +120,10 @@ export default class BrandBar extends React.Component {
 							variant="primary"
 							onClick={() => {
 								var quickNote = { ...this.state.quickNote };
-								quickNote.reminder = quickNote.reminder ? "true" : "false";
+								quickNote.reminder =
+									this.state.quickNote.text !== "" && quickNote.reminder
+										? "true"
+										: "false";
 								localStorage.setItem(
 									"quickNoteData",
 									JSON.stringify(quickNote)
