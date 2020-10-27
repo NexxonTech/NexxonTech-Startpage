@@ -35,6 +35,8 @@ export default {
 	},
 	quickNotes: {
 		title: "Notas rápidas",
+		reminderCheckBox: "Lembrar-me ao abrir a StartPage",
+		reminderToastTitle: "Lembrete!",
 		save: "Guardar",
 	},
 	greetings: {
@@ -45,7 +47,7 @@ export default {
 		welcome: {
 			title: "Bem-vindo!",
 			paragraphs: [
-				"Bem-vindo à nova versão de NexxonTech Startpage!",
+				"Bem-vindo à nova versão de NexxonTech StartPage!",
 				"Esta aplicação foi atualizada para ser ainda mais rápida e elegante, perfeita para qualquer PC.",
 				"Experimente-a agora para descobrir todas as novas funcionalidades e personalizá-la de acordo com as suas preferências.",
 			],
@@ -53,7 +55,7 @@ export default {
 		cookie: {
 			title: "Aviso de cookies",
 			paragraphs: [
-				"Obrigado pelo seu interesse na NexxonTech Startpage.",
+				"Obrigado pelo seu interesse na NexxonTech StartPage.",
 				"Nós mostramos-lhe esta mensagem para lhe lembrar que esta aplicação utiliza cookies (API localStorage, para ser mais preciso) de modo a guardar as definições necessárias para o funcionamento do software.",
 				"Nenhuma intervenção sua é necessária.",
 			],
