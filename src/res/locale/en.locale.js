@@ -35,7 +35,7 @@ export default {
 	},
 	quickNotes: {
 		title: "Quick notes",
-		reminderCheckBox: "Remebmer me when I open the StartPage",
+		reminderCheckBox: "Remember me when I open the StartPage",
 		reminderToastTitle: "Reminder!",
 		save: "Save",
 	},
@@ -47,7 +47,7 @@ export default {
 		welcome: {
 			title: "Welcome!",
 			paragraphs: [
-				"Welcome to the new version of NexxonTech Startpage!",
+				"Welcome to the new version of NexxonTech StartPage!",
 				"The app has been updated to be even faster and more elegant, perfect for any PC.",
 				"Try it now to discover all the new features and to customize it according to your preferences.",
 			],
@@ -55,7 +55,7 @@ export default {
 		cookie: {
 			title: "Cookie notice",
 			paragraphs: [
-				"Thank you for your interest in NexxonTech Startpage.",
+				"Thank you for your interest in NexxonTech StartPage.",
 				"We show you this message to remind you that this app uses cookies (localStorage API, to be precise) in order to store information necessary for the operation of the software itself.",
 				"No operations on your part are necessary.",
 			],
